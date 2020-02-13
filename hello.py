@@ -25,6 +25,3 @@ for i in test:
 
     #print(type(i))
 
-
-
-
