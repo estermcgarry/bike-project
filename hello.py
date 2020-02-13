@@ -6,7 +6,7 @@ url='https://api.jcdecaux.com/vls/v1/stations?contract=Dublin&apiKey=28c31a8964f
 json_dataset = requests.get(url).text
 
 print(json_dataset)
-test=json.loads(json_dataset)
+test = json.loads(json_dataset)
 
 for i in test:
     #print(i)
@@ -23,5 +23,7 @@ for i in test:
     print('Available bikes: ', i['available_bikes'])
     print()
 
-    #print(type(i))
 
+    #print(type(i))
+with open("json_test.json", "w") as outfile:
+    outfile.write(json_dataset)
