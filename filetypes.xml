@@ -1,0 +1,9 @@
+<application>
+  <component name="FileTypeManager" version="17">
+    <extensionMap>
+      <mapping pattern="p14p2.txt" type="PLAIN_TEXT" />
+      <mapping pattern="p9p4.py" type="PLAIN_TEXT" />
+      <mapping pattern="lock" type="PLAIN_TEXT" />
+    </extensionMap>
+  </component>
+</application>
