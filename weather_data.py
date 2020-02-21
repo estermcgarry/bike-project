@@ -24,6 +24,7 @@ Time = Unix.time()
 Temperature = round((test['currently']['temperature']-32) * 5/9, 1)
 Rainfall = test['currently']['precipIntensity']
 
+
 sql = "INSERT INTO WeatherData (Date, Time, Rainfall, Temperature) VALUES (%s, %s, %s, %s)"
 val = (Date, Time, Rainfall, Temperature)
 mycursor.execute(sql, val)
