@@ -50,15 +50,5 @@ for i in test:
     print(mycursor.rowcount, "record inserted.")
 
 mydb.close()
-    #print(type(i))
-# with open("json_test.json", "w") as outfile:
-#     outfile.write(json_dataset)
-#
-# url_weather='http://api.openweathermap.org/data/2.5/forecast?id=7778677&APPID=7466c05583646392fcd053e5d7ba2edd'
-#
-# json_dataset_weather = requests.get(url_weather).text
-#
-# with open("weather_api.json", "w") as outfile:
-#     outfile.write(json_dataset_weather)
 
 
