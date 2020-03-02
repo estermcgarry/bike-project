@@ -7,6 +7,9 @@ url='https://api.jcdecaux.com/vls/v1/stations?contract=Dublin&apiKey=28c31a8964f
 
 json_dataset = requests.get(url).text
 
+with open('stations_data.json', 'w') as f:
+    json.dump(json_dataset, f)
+
 print(json_dataset)
 test = json.loads(json_dataset)
 
