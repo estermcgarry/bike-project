@@ -7,7 +7,7 @@ url='https://api.darksky.net/forecast/313018b2afc91b7825d89c2740c19873/53.3498,-
 
 json_dataset = requests.get(url).text
 test = json.loads(json_dataset)
-
+print(json_dataset)
 mydb = mysql.connector.connect(
     host="bailebikesdb.ck068lrxfgr6.us-east-1.rds.amazonaws.com",
     user="admin",
@@ -23,9 +23,10 @@ Date = Unix.date()
 Time = Unix.time()
 Temperature = round((test['currently']['temperature']-32) * 5/9, 1)
 Rainfall = test['currently']['precipIntensity']
+Icon = test['currently']['icon']
 
-sql = "INSERT INTO WeatherData (Date, Time, Rainfall, Temperature) VALUES (%s, %s, %s, %s)"
-val = (Date, Time, Rainfall, Temperature)
+sql = "INSERT INTO WeatherData (Date, Time, Rainfall, Temperature, Icon) VALUES (%s, %s, %s, %s, %s)"
+val = (Date, Time, Rainfall, Temperature, Icon)
 mycursor.execute(sql, val)
 
 mydb.commit()
