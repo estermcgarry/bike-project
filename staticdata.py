@@ -2,13 +2,9 @@ import mysql.connector
 import requests
 import json
 
-
 url='https://api.jcdecaux.com/vls/v1/stations?contract=Dublin&apiKey=28c31a8964f03149402ab48b7cd02cc9079481f7'
 
 json_dataset = requests.get(url).text
-
-with open('stations_data.json', 'w') as f:
-    json.dump(json_dataset, f)
 
 print(json_dataset)
 test = json.loads(json_dataset)
