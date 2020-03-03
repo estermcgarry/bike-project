@@ -17,7 +17,8 @@ GoogleMaps(app)
 @app.route('/')
 def hello_world():
     mydb = mysql.connector.connect(
-        host="bailebikesdb.ck068lrxfgr6.us-east-1.rds.amazonaws.com",
+        host="bailebikesdb.c"
+             "k068lrxfgr6.us-east-1.rds.amazonaws.com",
         user="admin",
         passwd="picanha123",
         database='BikeData'
@@ -77,11 +78,11 @@ def mapview():
 
     sndmap.markers = []
 
-    # import json
-    #
-    # data = {}
-    #     data['key'] = 'value'
-    #     json_data = json.dumps(data)
+    import json
+
+    data = {}
+    data['key'] = 'value'
+    json_data = json.dumps(data)
 
     for (StationName, Latitude, Longitude) in mycursor:
         station = {}
@@ -96,25 +97,25 @@ def mapview():
     mydb.close()
 
     return render_template('template.html', mymap=mymap, sndmap=sndmap)
+#
+# if __name__ == "__main__":
+#     app.run(debug=True)
+#
 
-if __name__ == "__main__":
-    app.run(debug=True)
-
-
-
-
-host="bailebikesdb.ck068lrxfgr6.us-east-1.rds.amazonaws.com",
-user="admin",
-passwd="picanha123",
-database='BikeData'
-port = "3306"
-
-
-
-def connect_to_database():
-    engine = create_engine("mysql+mysqldb://{}:{}@{}:{}/{}".format(user,
-                                                                   passwd,
-                                                                   host,
-                                                                   port,
-                                                                   database), echo=True)
-    return engine
+#
+#
+# host="bailebikesdb.ck068lrxfgr6.us-east-1.rds.amazonaws.com",
+# user="admin",
+# passwd="picanha123",
+# database='BikeData'
+# port = "3306"
+#
+#
+#
+# def connect_to_database():
+#     engine = create_engine("mysql+mysqldb://{}:{}@{}:{}/{}".format(user,
+#                                                                    passwd,
+#                                                                    host,
+#                                                                    port,
+#                                                                    database), echo=True)
+#     return engine
