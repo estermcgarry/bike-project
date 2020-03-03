@@ -1,16 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-    {{"decoupled-map"|googlemap_js(37.4419, -122.1419, markers=[(37.4419, -122.1419)])}}
-    {{mymap.js}}
-    {{sndmap.js}}
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 80%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
 </head>
 <body>
+<div id="map"></div>
+<script>
+
+var markers = {{ markers|tojson|safe }};
+console.log(markers);
 
 
-<h2> Mapinha lindinho </h2>
-<h3> Este é o nosso mapinha</h3>
-{{sndmap.html}}
 
+function initMap() {
+  var myLatLng = {lat: -25.363, lng: 131.044};
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: myLatLng
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'Hello World!'
+  });
+}
+
+
+
+    </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBR7esRJtzTOqcv53Bk3t1xpiCF0YPO-3I&callback=initMap"
+        async defer></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

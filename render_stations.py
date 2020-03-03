@@ -4,7 +4,7 @@ import mysql.connector
 from flask_googlemaps import Map
 from flask import Flask, render_template
 import gmaps
-
+import json
 
 app = Flask(__name__,  template_folder=".")
 # gmaps.configure(api_key='AIzaSyBR7esRJtzTOqcv53Bk3t1xpiCF0YPO-3I')
@@ -48,55 +48,60 @@ def mapview():
 
     mycursor.execute("SELECT StationName, Latitude, Longitude FROM StaticData;")
 
+    markers = []
+    for i in mycursor:
+        markers.append(i)
+    markers = json.dumps(markers)
+
+    # for i in markers:
+    #     print(i)
+
 
     # creating a map in the view
-    mymap = Map(
-        identifier="view-side",
-        lat=37.4419,
-        lng=-122.1419,
-        markers=[(37.4419, -122.1419)]
-    )
-    sndmap = Map(
-        identifier="sndmap",
-        lat=53.3476222,
-        lng=-6.2606207,
-        markers=[
-            {
-                'icon': 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
-                'lat': 37.4419,
-                'lng': -122.1419,
-                'infobox': "<b>Hello World</b>"
-            },
-            {
-                'icon': 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-                'lat': 37.4300,
-                'lng': -122.1400,
-                'infobox': "<b>Hello World from other place</b>"
-            }
-        ]
-    )
+    # mymap = Map(
+    #     identifier="view-side",
+    #     lat=37.4419,
+    #     lng=-122.1419,
+    #     markers=[(37.4419, -122.1419)]
+    # )
+    # sndmap = Map(
+    #     identifier="sndmap",
+    #     lat=53.3476222,
+    #     lng=-6.2606207,
+        # markers=[
+            # {
+            #     'icon': 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+            #     'lat': 37.4300,
+            #     'lng': -122.1400,
+            #     'infobox': "<b>Hello World from other place</b>"
+            # }
+        # ]
+    # )
+    # sndmap.markers = []
+    #
+    #
+    #
+    # data = {}
+    # data['key'] = 'value'
+    # json_data = json.dumps(data)
 
-    sndmap.markers = []
-
-    import json
-
-    data = {}
-    data['key'] = 'value'
-    json_data = json.dumps(data)
-
-    for (StationName, Latitude, Longitude) in mycursor:
-        station = {}
-        station['icon'] = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
-        station['lat'] = Latitude
-        station['lng'] = Longitude
-        station['infobox'] = StationName
-        sndmap.markers.append(station)
+    # for (StationName, Latitude, Longitude) in mycursor:
+    #     station = {}
+    #     station['icon'] = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+    #     station['lat'] = Latitude
+    #     station['lng'] = Longitude
+    #     station['infobox'] = StationName
+    #     sndmap.markers.append(station)
 
 
     mycursor.close()
     mydb.close()
 
-    return render_template('template.html', mymap=mymap, sndmap=sndmap)
+    return render_template('template.html', markers=markers)
+    # return render_template('template.html', mymap=mymap, sndmap=sndmap)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
 #
 # if __name__ == "__main__":
 #     app.run(debug=True)
