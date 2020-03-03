@@ -24,13 +24,12 @@ Time = Unix.time()
 Temperature = round((test['currently']['temperature']-32) * 5/9, 1)
 Rainfall = test['currently']['precipIntensity']
 Icon = test['currently']['icon']
+WindSpeed = test['currently']['windSpeed']
 
-sql = "INSERT INTO WeatherData (Date, Time, Rainfall, Temperature, Icon) VALUES (%s, %s, %s, %s, %s)"
-val = (Date, Time, Rainfall, Temperature, Icon)
+sql = "INSERT INTO WeatherData (Date, Time, Rainfall, Temperature, Icon, WindSpeed) VALUES (%s, %s, %s, %s, %s, %s)"
+val = (Date, Time, Rainfall, Temperature, Icon, WindSpeed)
 mycursor.execute(sql, val)
 
 mydb.commit()
-
 print(mycursor.rowcount, "record inserted.")
-
 mydb.close()
