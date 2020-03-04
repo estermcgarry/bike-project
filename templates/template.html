@@ -23,7 +23,6 @@
 <script>
 
 
-
 var markers = {{ markers|safe }};
 
 console.log(markers);
@@ -60,16 +59,11 @@ function initMap() {
             map: map,
             title: marker.name
         });
-
-
     }
-
 }
 
-
     </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBR7esRJtzTOqcv53Bk3t1xpiCF0YPO-3I&callback=initMap"
-        async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBR7esRJtzTOqcv53Bk3t1xpiCF0YPO-3I&callback=initMap" async defer></script>
 </body>
 </html>
 

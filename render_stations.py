@@ -3,7 +3,7 @@ import mysql.connector
 from flask import Flask, render_template
 import json
 
-app = Flask(__name__,  template_folder=".")
+app = Flask(__name__,  template_folder="./templates")
 
 
 app.config['GOOGLEMAPS_KEY'] = "AIzaSyBR7esRJtzTOqcv53Bk3t1xpiCF0YPO-3I"
@@ -11,28 +11,7 @@ app.config['GOOGLEMAPS_KEY'] = "AIzaSyBR7esRJtzTOqcv53Bk3t1xpiCF0YPO-3I"
 # Initialize the extension
 GoogleMaps(app)
 
-@app.route('/')
-def hello_world():
-    mydb = mysql.connector.connect(
-        host="bailebikesdb.c"
-             "k068lrxfgr6.us-east-1.rds.amazonaws.com",
-        user="admin",
-        passwd="picanha123",
-        database='BikeData'
-    )
-
-    mycursor = mydb.cursor()
-
-    mycursor.execute("SELECT StationName, Latitude, Longitude FROM StaticData;")
-    myresult = mycursor.fetchall()
-
-    for x in myresult:
-        print(x)
-
-    return "x"
-
-
-@app.route("/ester")
+@app.route("/")
 def mapview():
     mydb = mysql.connector.connect(
         host="bailebikesdb.ck068lrxfgr6.us-east-1.rds.amazonaws.com",
@@ -57,4 +36,5 @@ def mapview():
     return render_template('template.html', markers=json.dumps(markers))
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(debug=True)
+#    app.run(host='0.0.0.0', port=5000)
