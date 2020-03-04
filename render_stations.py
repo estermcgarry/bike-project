@@ -49,9 +49,12 @@ def mapview():
     mycursor.execute("SELECT StationName, Latitude, Longitude FROM StaticData;")
 
     markers = []
+
     for i in mycursor:
-        markers.append(i)
-    markers = json.dumps(markers)
+         # dict = {1: 'Geeks', 2: 'For', 3: 'Geeks'}
+        station = {"name" : i[0], "latitude" : i[1], "longitude" : i[2]}
+        markers.append(station)
+
 
     # for i in markers:
     #     print(i)
@@ -97,7 +100,7 @@ def mapview():
     mycursor.close()
     mydb.close()
 
-    return render_template('template.html', markers=markers)
+    return render_template('template.html', markers=json.dumps(markers))
     # return render_template('template.html', mymap=mymap, sndmap=sndmap)
 
 if __name__ == '__main__':
