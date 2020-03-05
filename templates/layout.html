@@ -4,8 +4,22 @@
     <meta charset="UTF-8">
     <title>Baile Bikes</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 80%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
 </head>
 <body>
+<div id="map"></div>
     {% include 'includes/_navbar.html' %}
     {% block body %}{% endblock %}
     
