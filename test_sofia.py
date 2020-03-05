@@ -5,8 +5,9 @@ import json
 
 app = Flask(__name__,  template_folder="./templates")
 
-
 app.config['GOOGLEMAPS_KEY'] = "AIzaSyBR7esRJtzTOqcv53Bk3t1xpiCF0YPO-3I"
+
+# Initialize the extension
 GoogleMaps(app)
 
 @app.route('/')
@@ -33,7 +34,6 @@ def mapview():
 
     return render_template('index.html', markers=json.dumps(markers))
 
-
 @app.route('/stations')
 def stations():
     return render_template('stations.html')
@@ -44,3 +44,4 @@ def contact():
 
 if __name__ == '__main__':
     app.run(debug=True)
+

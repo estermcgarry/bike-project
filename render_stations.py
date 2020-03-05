@@ -5,7 +5,6 @@ import json
 
 app = Flask(__name__,  template_folder="./templates")
 
-
 app.config['GOOGLEMAPS_KEY'] = "AIzaSyBR7esRJtzTOqcv53Bk3t1xpiCF0YPO-3I"
 
 # Initialize the extension
