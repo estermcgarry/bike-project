@@ -6,9 +6,10 @@ import json
 app = Flask(__name__,  template_folder="./templates")
 app.config['WEATHER_KEY'] = 'https://api.darksky.net/forecast/313018b2afc91b7825d89c2740c19873/53.3498,-6.0'
 
-#Connect to the database
+#Request weather information from database
 @app.route('/')
-def mapview():
+def requestweather():
+    #Connect to the database
     mydb = mysql.connector.connect(
         host="bailebikesdb.ck068lrxfgr6.us-east-1.rds.amazonaws.com",
         user="admin",
@@ -19,7 +20,7 @@ def mapview():
     mycursor = mydb.cursor()
     mycursor.execute("SELECT Icon, Temperature, Rainfall, WindSpeed FROM WeatherData;")
 
-    #Store info into a dictonary
+    #Store info into a dictionary
     weather_info = []
     for i in mycursor:
         info = {"Icon": i[0], "Temperature": i[1], "Rainfall": i[2],"WindSpeed": i[3]}
@@ -29,14 +30,11 @@ def mapview():
     mycursor.close()
     mydb.close()
 
+    #Store information in a variable
     return render_template('index.html', weather_info=json.dumps(weather_info))
-
-#Return content of weatherinfo.html file
-@app.route('/weatherinfo')
-def weatherinfo():
-    return render_template('weatherinfo.html')
 
 #Update changes automaticaly
 if __name__ == '__main__':
     app.run(debug=True)
+
 
