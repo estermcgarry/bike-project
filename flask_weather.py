@@ -31,14 +31,12 @@ def mapview():
 
     return render_template('index.html', weather_info=json.dumps(weather_info))
 
+#Return content of weatherinfo.html file
 @app.route('/weatherinfo')
 def weatherinfo():
     return render_template('weatherinfo.html')
 
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
-
+#Update changes automaticaly
 if __name__ == '__main__':
     app.run(debug=True)
 
