@@ -18,12 +18,12 @@ def requestweather():
     )
     #Open a sql query
     mycursor = mydb.cursor()
-    mycursor.execute("SELECT Icon, Temperature, Rainfall, WindSpeed FROM WeatherData;")
+    mycursor.execute("SELECT Date, Time, Icon, Temperature, Rainfall, WindSpeed FROM WeatherData;")
 
     #Store info into a dictionary
     weather_info = []
     for i in mycursor:
-        info = {"Icon": i[0], "Temperature": i[1], "Rainfall": i[2],"WindSpeed": i[3]}
+        info = {"Date": i[0], "Time": i[1], "Icon": i[2], "Temperature": i[3], "Rainfall": i[4],"WindSpeed": i[5]}
         weather_info.append(info)
 
     #Close request

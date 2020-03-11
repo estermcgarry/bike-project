@@ -19,7 +19,12 @@ lay weather information
         <p>Dublin</p>
     </div>
     <div class="weather-container">
-
+        <div id="date">
+            <p>Date</p>
+        </div>
+        <div id="time">
+            <p>Time</p>
+        </div>
         <div id="weather-icon">
             <img src="images/unknown.png" alt="">
         </div>
@@ -40,6 +45,12 @@ console.log(weather_info);
 console.log(typeof weather_info);
 
 function getData() {
+    var date = document.getElementsById("date")
+    date.open(weather_info);
+
+    var time = document.getElementsById("time")
+    time.open(weather_info);
+
     var icon = document.getElementsById("weather-icon")
     icon.open(weather_info);
 
