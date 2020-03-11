@@ -28,8 +28,14 @@ function initMap() {
         var infoWindow = new google.maps.InfoWindow({
             content: newMarker.name
         });
+        
         marker.addListener('click', function(){
             infoWindow.open(map, marker);
+        });
+        
+        // Close marker when clicking somewhere else on the map
+        google.maps.event.addListener(map, 'click', function(){
+            infoWindow.close(map, marker);
         });
     };
 };
