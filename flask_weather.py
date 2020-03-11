@@ -31,7 +31,7 @@ def requestweather():
     mydb.close()
 
     #Store information in a variable
-    return render_template('index.html', weather_info=json.dumps(weather_info))
+    return render_template('template.html', weather_info=json.dumps(weather_info))
 
 #Update changes automaticaly
 if __name__ == '__main__':
