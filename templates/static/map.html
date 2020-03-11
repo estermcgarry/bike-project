@@ -2,24 +2,19 @@
 
 var markers = {{ markers|safe }};
 
-console.log(markers);
 
-console.log(typeof markers);
-
+<!--function infoCallback(infowindow, marker) {-->
+<!--   return function() { infowindow.open(map, marker); };-->
+<!--}-->
 
 
 function initMap() {
     var myLatLng = {lat: 53.3476222, lng: -6.2606207};
 
+<!--    Initial Map Settings -->
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 14,
         center: myLatLng
-    });
-
-    var marker = new google.maps.Marker({
-        position: myLatLng,
-        map: map,
-        title: 'Hello World!'
     });
 
     var i;
@@ -29,17 +24,30 @@ function initMap() {
 
         marker = markers[i];
 
-        console.log(marker.latitude);
-
         new google.maps.Marker({
             position: new google.maps.LatLng(marker.latitude, marker.longitude),
             map: map,
             title: marker.name
         });
 
+        console.log(marker);
+        var infoWindow = new google.maps.InfoWindow({
+        content: "bunda"
+        });
+
+        google.maps.event.addListener(marker, 'click', function(){
+            infoWindow.open(map,marker);
+        });
     }
 
+
+<!--    var infowindow = new google.maps.InfoWindow({-->
+<!--        content: "<div class=infowindow><h1>Text: </h1><p>textinho: 715,402</p></div>"-->
+<!--   });-->
+
 }
+
+
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBR7esRJtzTOqcv53Bk3t1xpiCF0YPO-3I&callback=initMap"

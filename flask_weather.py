@@ -25,13 +25,16 @@ def requestweather():
     for i in mycursor:
         info = {"Date": i[0], "Time": i[1], "Icon": i[2], "Temperature": i[3], "Rainfall": i[4],"WindSpeed": i[5]}
         weather_info.append(info)
+        print(i)
+
+    current_weather = []
 
     #Close request
     mycursor.close()
     mydb.close()
 
     #Store information in a variable
-    return render_template('template.html', weather_info=json.dumps(weather_info))
+    return render_template('weathertest.html', weather_info=json.dumps(weather_info))
 
 #Update changes automaticaly
 if __name__ == '__main__':
