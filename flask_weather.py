@@ -18,6 +18,7 @@ def requestweather():
     )
     #Open a sql query
     mycursor = mydb.cursor()
+
     mycursor.execute("SELECT Date, Time, Icon, Temperature, Rainfall, WindSpeed FROM WeatherData;")
 
     #Store info into a dictionary
@@ -38,6 +39,6 @@ def requestweather():
 
 #Update changes automaticaly
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=8000)
 
 
