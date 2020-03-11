@@ -2,53 +2,37 @@
 
 var markers = {{ markers|safe }};
 
-
-
-<!--function infoCallback(infowindow, marker) {-->
-<!--   return function() { infowindow.open(map, marker); };-->
-<!--}-->
-
-
+var map;
 function initMap() {
-    var myLatLng = {lat: 53.3476222, lng: -6.2606207};
+    var dublinCords = {lat: 53.3476222, lng: -6.2606207};
+    var mapOptions = {center: dublinCords, zoom: 14};
+    
+    // New map
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-<!--    Initial Map Settings -->
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 14,
-        center: myLatLng
-    });
-
-    var i;
-    var marker = null;
-
-    for (i = 0; i < markers.length; i++) {
-
-        marker = markers[i];
-
-        new google.maps.Marker({
-            position: new google.maps.LatLng(marker.latitude, marker.longitude),
+    // Loop through markers
+    for (var i = 0; i < markers.length; i++) {
+        // Add marker
+        addMarker(markers[i]);
+    };
+    
+    //Add Marker Function
+    function addMarker(newMarker) {
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(newMarker.latitude, newMarker.longitude),
             map: map,
-            title: marker.name
+            title: newMarker.name
         });
-
-        console.log(marker);
+        
+        // Add info window
         var infoWindow = new google.maps.InfoWindow({
-        content: "bunda"
+            content: newMarker.name
         });
-
-        google.maps.event.addListener(marker, 'click', function(){
-            infoWindow.open(map,marker);
+        marker.addListener('click', function(){
+            infoWindow.open(map, marker);
         });
-    }
-
-
-<!--    var infowindow = new google.maps.InfoWindow({-->
-<!--        content: "<div class=infowindow><h1>Text: </h1><p>textinho: 715,402</p></div>"-->
-<!--   });-->
-
-}
-
-
+    };
+};
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBR7esRJtzTOqcv53Bk3t1xpiCF0YPO-3I&callback=initMap"
