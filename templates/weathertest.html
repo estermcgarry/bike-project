@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dispay Weather</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+
+    </style>
+</head>
+<body>
+
+
+
+<script>
+
+//Create a container to disp
+lay weather information
+<div class="container">
+    <div class="location-title">
+        <p>Dublin</p>
+    </div>
+    <div class="weather-container">
+
+        <div id="weather-icon">
+            <img src="images/unknown.png" alt="">
+        </div>
+        <div id="temperature-value">
+            <p>-°C</p>
+        </div>
+        <div id="rainfall-description">
+            <p>-Rainfall</p>
+        </div>
+        <div id="wind-speed">
+            <p>-Displays wind speed</p>
+        </div>
+    </div>
+</div>
+
+var weather_info = {{ weather_info|safe }};
+console.log(weather_info);
+console.log(typeof weather_info);
+
+function getData() {
+    var icon = document.getElementsById("weather-icon")
+    icon.open(weather_info);
+
+    var temperature = document.getElementsById("temperature-value")
+    temperature.open(weather_info);
+
+    var rainfall = document.getElementsById("rainfall-description")
+    rainfall.open(weather_info);
+
+    var wind = document.getElementsById("wind-speed")
+    wind.open(weather_info);
+    }
+
+ //Display weather content after page is loaded
+object.onload = function displayWeather(){
+         function getdata()
+
+}
+    </script>
+<script src='https://api.darksky.net/forecast/313018b2afc91b7825d89c2740c19873/53.3498,-6.0' async defer></script>
+</body>
+</html>
+
