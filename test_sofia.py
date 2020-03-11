@@ -19,6 +19,7 @@ def mapview():
         database='BikeData'
     )
 
+
     mycursor = mydb.cursor()
 
     mycursor.execute("SELECT StationName, Latitude, Longitude FROM StaticData;")
@@ -39,6 +40,7 @@ def stations():
     return render_template('stations.html')
 
 @app.route('/contact')
+
 def contact():
     return render_template('contact.html')
 
