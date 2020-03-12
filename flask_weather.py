@@ -19,7 +19,8 @@ def requestweather():
     #Open a sql query
     mycursor = mydb.cursor()
 
-    mycursor.execute("SELECT Date, Time, Icon, Temperature, Rainfall, WindSpeed FROM WeatherData;")
+    #mycursor.execute("SELECT Date, Time, Icon, Temperature, Rainfall, WindSpeed FROM WeatherData;")
+    mycursor.execute("SELECT * FROM WeatherData WHERE Date=(SELECT max(Date) FROM WeatherData) ORDER BY Time DESC LIMIT 1;")
 
     #Store info into a dictionary
     weather_info = []
