@@ -10,7 +10,7 @@
 </head>
 <body>
 <p>Date: <span id="date"></span><br/></p>
-<p>Time: <span id="time"></span></p>
+<p>Last atualization: <span id="time"></span></p>
 <p>Icon: <span id="icon"></span></p>
 <p>Temperature: <span id="temperature"></span></p>
 <p>Rainfall: <span id="rainfall"></span></p>
@@ -22,18 +22,18 @@ var weather_info = {{ weather_info|safe }};
 console.log(weather_info);
 console.log('This is weather_info variable: ' + typeof weather_info);
 
-//Convert object into string, create a array with 6 string elements
+//Convert object into string and create an array with 6 string elements
 var weatherArray = JSON.stringify(weather_info);
 console.log(weatherArray)
 console.log('This is weather_Array variable: ' + typeof weatherArray);
 
-// Split string by , character
+// Split each string by , character
 const splitString = weatherArray.split(",");
 console.log(splitString)
 console.log('This is splitString variable: ' + typeof splitString);
 
+// Slit each element of array by "" and append result to new array
 window.onload = function(){
-//Split each element of array by " and append result to new array
 var i;
 var newArray = [];
 for (i = 0; i < splitString.length; i++) {
@@ -45,9 +45,9 @@ for (i = 0; i < splitString.length; i++) {
 }
 document.getElementById("date").innerHTML = newArray[0];
 document.getElementById("time").innerHTML = newArray[1];
-document.getElementById("icon").innerHTML = newArray[2];
+document.getElementById("icon").innerHTML = newArray[4];
 document.getElementById("temperature").innerHTML = newArray[3];
-document.getElementById("rainfall").innerHTML = newArray[4];
+document.getElementById("rainfall").innerHTML = newArray[2];
 document.getElementById("windspeed").innerHTML = newArray[5];
 
 };
