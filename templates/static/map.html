@@ -21,24 +21,46 @@ function initMap() {
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(newMarker.latitude, newMarker.longitude),
             map: map,
-            title: newMarker.name
+            title: newMarker.name,
+            bike_station: newMarker.number
         });
         
         // Add info window
-        var infoWindow = new google.maps.InfoWindow({
-            content: newMarker.name
-        });
-        
+        //var infoWindow = new google.maps.InfoWindow({
+            //content: newMarker.name
+        //});
+
         marker.addListener('click', function(){
-            infoWindow.open(map, marker);
+            requestStationInfo(marker.bike_station, marker);
+
         });
-        
+
         // Close marker when clicking somewhere else on the map
         google.maps.event.addListener(map, 'click', function(){
             infoWindow.close(map, marker);
         });
     };
 };
+
+
+function requestStationInfo(stationNumber, marker){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = createCallback(xhttp, stationNumber, marker);
+    xhttp.open("GET", "/station/" + stationNumber, true);
+    xhttp.send();
+}
+
+function createCallback(xhttp, stationNumber, marker) {
+    return  function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var infoWindow = new google.maps.InfoWindow({
+                content: xhttp.responseText
+            });
+            infoWindow.open(map, marker);
+        }
+    };
+}
+
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBR7esRJtzTOqcv53Bk3t1xpiCF0YPO-3I&callback=initMap"
