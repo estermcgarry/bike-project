@@ -22,16 +22,11 @@ function initMap() {
             position: new google.maps.LatLng(newMarker.latitude, newMarker.longitude),
             map: map,
             title: newMarker.name,
-            bike_station: newMarker.number
+            bikeStation: newMarker.number
         });
-        
-        // Add info window
-        //var infoWindow = new google.maps.InfoWindow({
-            //content: newMarker.name
-        //});
 
         marker.addListener('click', function(){
-            requestStationInfo(marker.bike_station, marker);
+            requestStationInfo(marker.bikeStation, marker);
 
         });
 
