@@ -10,8 +10,6 @@ app.config['GOOGLEMAPS_KEY'] = "AIzaSyBR7esRJtzTOqcv53Bk3t1xpiCF0YPO-3I"
 # Initialize the extension
 GoogleMaps(app)
 
-
-
 @app.route('/')
 def mapview():
 
@@ -27,15 +25,17 @@ def mapview():
     mycursor.execute("SELECT StationNumber, StationName, Latitude, Longitude FROM StaticData;")
 
     markers = []
+    station_names = []
 
     for i in mycursor:
         station = {"number": i[0], "name" : i[1], "latitude" : i[2], "longitude" : i[3]}
         markers.append(station)
+        station_names.append(i[1])
 
     mycursor.close()
     mydb.close()
 
-    return render_template('index.html', markers=json.dumps(markers))
+    return render_template('index.html', markers=json.dumps(markers), station_names=json.dumps(station_names))
 
 @app.route('/station/<station>')
 def home(station):
@@ -62,7 +62,6 @@ def stations():
     return render_template('stations.html')
 
 @app.route('/contact')
-
 def contact():
     return render_template('contact.html')
 
