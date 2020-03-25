@@ -30,7 +30,9 @@ def mapview():
     for i in mycursor:
         station = {"number": i[0], "name" : i[1], "latitude" : i[2], "longitude" : i[3]}
         markers.append(station)
-        station_names.append(i[1])
+        # Selecting information to be used in the dropdown menu
+        infoDropdown = {"number": i[0], "name" : i[1]}
+        station_names.append(infoDropdown)
 
     mycursor.close()
     mydb.close()
