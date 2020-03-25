@@ -9,13 +9,9 @@
     </style>
 </head>
 <body>
-<p>Date: <span id="date"></span><br/></p>
-<p>Last atualization: <span id="time"></span></p>
-<p>Icon: <span id="icon"></span></p>
-<p>Temperature: <span id="temperature"></span></p>
-<p>Rainfall: <span id="rainfall"></span></p>
-<p>Windspeed: <span id="windspeed"></span></p>
+<canvas id="icon" width="128" height="128"></canvas>
 <script>
+
 
 (function(global) {
   "use strict";
@@ -745,7 +741,15 @@
 }(this));
 
 
+ //Create a variable and set to a new skycon
+//var skycons = new Skycons({"color": "pink"});
+////skycons.add(document.getElementById("icon"), Skycons.newArray[4]);
+////icon.set('icon', data.icon)
+//skycons.add("icon1", Skycons.PARTLY_CLOUDY_DAY);
+////icon.play();
+
+
     </script>
-<script src='https://api.darksky.net/forecast/313018b2afc91b7825d89c2740c19873/53.3498,-6.0' async defer></script>
+//<script src='https://api.darksky.net/forecast/313018b2afc91b7825d89c2740c19873/53.3498,-6.0' async defer></script>
 </body>
 </html>
