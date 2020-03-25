@@ -9,7 +9,7 @@
 <body>
 <p>Date: <span id="date"></span><br/></p>
 <p>Last update: Today at <span id="time"></span></p>
-<canvas id="icon" width="128" height="128"></canvas>
+<div id="icon"></div>
 <p>Temperature: <span id="temperature"></span></p>
 <p>Rainfall: <span id="rainfall"></span></p>
 <p>Windspeed: <span id="windspeed"></span></p>
@@ -51,11 +51,17 @@ document.getElementById("temperature").innerHTML = newArray[3];
 document.getElementById("rainfall").innerHTML = newArray[2];
 document.getElementById("windspeed").innerHTML = newArray[5];
 
- //Create a variable and set to a new skycon
-var skycons = new Skycons({"color": "pink"});
-skycons.add(document.getElementById("icon"), Skycons.newArray[4]);
-icon.set('icon', data.icon)
-icon.play();
+var imageName = newArray[4];
+console.log('This is the image name string: ' + imageName)
+if (imageName == "clear-day") {
+document.getElementById("icon").innerHTML='<img src="icons2/unknown.png">';
+}
+else if (imageName == "clear-night"){
+document.getElementById("icon").innerHTML='<img src="icons2/clear-night.png">';
+}
+else{
+document.getElementById("icon").innerHTML='<img src="icons2/unknown.png">';
+}
 
 };
 
@@ -67,6 +73,5 @@ icon.play();
 
     </script>
 <script src='https://api.darksky.net/forecast/313018b2afc91b7825d89c2740c19873/53.3498,-6.0' async defer></script>
-<script src='skyicons.html' async defer></script>
 </body>
 </html>
