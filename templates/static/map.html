@@ -47,28 +47,29 @@ function requestStationInfo(stationNumber, marker){
 }
 
 
-<!--var lastOpenedInfoWindow;-->
+var lastOpenedInfoWindow;
 function createCallback(xhttp, stationNumber, marker) {
 
     return  function() {
-<!--        closeLastOpenedInfoWindow();-->
+        closeLastOpenedInfoWindow();
         if (this.readyState == 4 && this.status == 200) {
             var infoWindow = new google.maps.InfoWindow({
                 content: xhttp.responseText
             });
             infoWindow.open(map, marker);
+            lastOpenedInfoWindow = infoWindow;
         }
     };
-<!--    lastOpenedInfoWindow = infowindow;-->
+
 }
 
 
 
-<!--function closeLastOpenedInfoWindow() {-->
-<!--    if (lastOpenedInfoWindow) {-->
-<!--        lastOpenedInfoWindow.close();-->
-<!--    }-->
-<!--}-->
+function closeLastOpenedInfoWindow() {
+    if (lastOpenedInfoWindow) {
+        lastOpenedInfoWindow.close();
+    }
+}
 
 
 
