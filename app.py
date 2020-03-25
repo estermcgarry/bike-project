@@ -57,9 +57,9 @@ def home(station):
     return message
 
 
-@app.route('/stations')
+@app.route('/about')
 def stations():
-    return render_template('stations.html')
+    return render_template('about.html')
 
 @app.route('/contact')
 def contact():
