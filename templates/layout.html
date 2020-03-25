@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Baile Bikes</title>
-    <link rel="stylesheet" href="static/styles.css">
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/styles.css">
     <style>
         /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -22,15 +23,17 @@
             padding: 0;
         }
         
+        .navbar {
+            background-color: white;
+            color: aqua;
+        }
+        
     </style>
 </head>
 
 <body>
 
     {% include 'includes/_navbar.html' %}
-    
-    <!-- Logo -->
-    <img src="static/images/baile_bikes.png" alt="Baile Bikes Logo" width=250px >
     
     {% block body %}{% endblock %}
 
