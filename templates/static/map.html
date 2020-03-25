@@ -27,7 +27,6 @@ function initMap() {
 
         marker.addListener('click', function(){
             requestStationInfo(marker.bikeStation, marker);
-
         });
 
         // Close marker when clicking somewhere else on the map
@@ -46,8 +45,12 @@ function requestStationInfo(stationNumber, marker){
     xhttp.send();
 }
 
+
+<!--var lastOpenedInfoWindow;-->
 function createCallback(xhttp, stationNumber, marker) {
+
     return  function() {
+<!--        closeLastOpenedInfoWindow();-->
         if (this.readyState == 4 && this.status == 200) {
             var infoWindow = new google.maps.InfoWindow({
                 content: xhttp.responseText
@@ -55,7 +58,19 @@ function createCallback(xhttp, stationNumber, marker) {
             infoWindow.open(map, marker);
         }
     };
+<!--    lastOpenedInfoWindow = infowindow;-->
 }
+
+
+
+<!--function closeLastOpenedInfoWindow() {-->
+<!--    if (lastOpenedInfoWindow) {-->
+<!--        lastOpenedInfoWindow.close();-->
+<!--    }-->
+<!--}-->
+
+
+
 
 
 </script>
