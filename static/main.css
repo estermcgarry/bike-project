@@ -12,3 +12,8 @@ body {
     margin: 0;
     padding: 0;
 }
+
+#weather {
+    width: 30%;
+    color:blue;
+}
