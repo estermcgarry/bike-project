@@ -21,7 +21,7 @@ def mapview():
     )
 
     mycursor = mydb.cursor()
-    mycursor.execute("SELECT StationNumber, StationName, Latitude, Longitude FROM StaticData;")
+    mycursor.execute("SELECT StationNumber, StationName, Latitude, Longitude FROM StaticData ORDER BY StationName ASC;")
 
     markers = []
     station_names = []
