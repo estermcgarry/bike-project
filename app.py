@@ -6,12 +6,13 @@ import json
 app = Flask(__name__,  template_folder="./templates")
 
 app.config['GOOGLEMAPS_KEY'] = "AIzaSyBR7esRJtzTOqcv53Bk3t1xpiCF0YPO-3I"
+app.config['WEATHER_KEY'] = "https://api.darksky.net/forecast/313018b2afc91b7825d89c2740c19873/53.3498,-6.0"
 
 # Initialize the extension
 GoogleMaps(app)
 
 @app.route('/')
-def mapview():
+def index():
 
     mydb = mysql.connector.connect(
         host="bailebikesdb.ck068lrxfgr6.us-east-1.rds.amazonaws.com",
@@ -35,9 +36,21 @@ def mapview():
         station_names.append(infoDropdown)
 
     mycursor.close()
+
+    weather_cursor = mydb.cursor()
+    weather_cursor.execute("SELECT * FROM WeatherData WHERE Date=(SELECT max(Date) FROM WeatherData) ORDER BY Time DESC LIMIT 1;")
+
+    #Store weather info into a dictionary
+    weather_info = []
+    for i in weather_cursor:
+        info = {"Date": i[0], "Time": i[1], "Rainfall": i[2], "Temperature": i[3], "Icon": i[4],"WindSpeed": i[5]}
+        weather_info.append(info)
+        print(i)
+    
+    weather_cursor.close()
     mydb.close()
 
-    return render_template('index.html', markers=json.dumps(markers), station_names=json.dumps(station_names))
+    return render_template('index.html', markers=json.dumps(markers), station_names=json.dumps(station_names), weather_info=json.dumps(weather_info))
 
 @app.route('/station/<station>')
 def home(station):

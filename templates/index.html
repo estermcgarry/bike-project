@@ -1,7 +1,18 @@
 {% extends 'layout.html' %}
 
 {% block body %}
+
+<div id="weather">
+    <p>Date: <span id="date"></span><br/></p>
+    <p>Last update: Today at <span id="time"></span></p>
+    <div id="icon"></div>
+    <p>Temperature: <span id="temperature"></span></p>
+    <p>Rainfall: <span id="rainfall"></span></p>
+    <p>Windspeed: <span id="windspeed"></span></p>
+</div>
 <div id="map"></div>
+
+{% include 'static/weather.html' %}
 {% include 'static/map.html' %}
 {% include 'includes/_form.html' %}
 
