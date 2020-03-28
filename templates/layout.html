@@ -8,17 +8,28 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" href="../static/main.css"> -->
     <style>
+        #weather {
+            color: #666;
+        }
         /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-#map {
-    height: 500px;
-    width: 70%;
-    margin: auto;  
-}
+        * element that contains the map. */
+        #map {
+            height: 500px;
+            width: 70%;
+            margin: auto;  
+        }
 
-nav {
-    background-color: white;
-}
+        nav {
+            background-color: white;
+        }
+
+        /* Responsive design */
+        @media screen and (max-width: 800px) {
+            #map {
+                height: 300px;
+                width: 70%;
+            }
+        }
     </style>
 </head>
 
