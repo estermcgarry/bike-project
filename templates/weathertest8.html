@@ -4,11 +4,12 @@
     <title>Dispay Weather</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
-    <style>    </style>
+    <style></style>
 </head>
 <body>
+
 <p>Date: <span id="date"></span><br/></p>
-<p>Last update: Today at <span id="time"></span></p>
+<p>Last update today at: <span id="time"></span></p>
 <div id="icon"></div>
 <p>Temperature: <span id="temperature"></span></p>
 <p>Rainfall: <span id="rainfall"></span></p>
@@ -39,8 +40,8 @@ for (i = 0; i < splitString.length; i++) {
    var temp = splitString[i]
    const splitString2 = temp.split("\"");
    newArray.push(splitString2[3])
-   //console.log('This is splitString2 inside loop: ' + splitString2)
-   //console.log('New array with third element: ' + newArray)
+   console.log('This is splitString2 inside loop: ' + splitString2)
+   console.log('New array with third element: ' + newArray)
 
 }
 //Assign elements of array to id's in html
@@ -51,26 +52,43 @@ document.getElementById("temperature").innerHTML = newArray[3];
 document.getElementById("rainfall").innerHTML = newArray[2];
 document.getElementById("windspeed").innerHTML = newArray[5];
 
-//This is only a test to check if images can be displayed
+//Check if icon name is equal to image name to display the image if is equal.
 var imageName = newArray[4];
-console.log('This is the image name string: ' + imageName)
 if (imageName == "clear-day") {
-document.getElementById("icon").innerHTML='<img src="icons2/unknown.png">';
+document.getElementById("icon").innerHTML='<img src="static/images/clear-day.png">';
 }
 else if (imageName == "clear-night"){
-document.getElementById("icon").innerHTML='<img src="icons2/clear-night.png">';
+document.getElementById("icon").innerHTML='<img src="static/images/clear-night.png">';
+}
+else if (imageName == "cloudy"){
+document.getElementById("icon").innerHTML='<img src="static/images/cloudy.png">';
+}
+else if (imageName == "fog"){
+document.getElementById("icon").innerHTML='<img src="static/images/fog.png">';
+}
+else if (imageName == "partly-cloudy-day"){
+document.getElementById("icon").innerHTML='<img src="static/images/partly-cloudy-day.png">';
+}
+else if (imageName == "partly-cloudy-night"){
+document.getElementById("icon").innerHTML='<img src="static/images/partly-cloudy-night.png">';
+}
+else if (imageName == "rain"){
+document.getElementById("icon").innerHTML='<img src="static/images/rain.png">';
+}
+else if (imageName == "sleet"){
+document.getElementById("icon").innerHTML='<img src="static/images/sleet.png">';
+}
+else if (imageName == "snow"){
+document.getElementById("icon").innerHTML='<img src="static/images/snow.png">';
+}
+else if (imageName == "wind"){
+document.getElementById("icon").innerHTML='<img src="static/images/wind.png">';
 }
 else{
-document.getElementById("icon").innerHTML='<img src="icons2/unknown.png">';
+document.getElementById("icon").innerHTML='<img src="static/images/unknown.png">';
 }
 
 };
-
-//work on images
-
-//work on real time weater
-//on click event
-
 
     </script>
 <script src='https://api.darksky.net/forecast/313018b2afc91b7825d89c2740c19873/53.3498,-6.0' async defer></script>

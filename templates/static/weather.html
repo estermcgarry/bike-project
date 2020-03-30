@@ -1,0 +1,79 @@
+<script>
+   
+//Information from weather api stored as object type
+var weather_info = {{ weather_info|safe }};
+console.log(weather_info);
+console.log('This is weather_info variable: ' + typeof weather_info);
+
+//Convert object into string and create an array with 6 string elements
+var weatherArray = JSON.stringify(weather_info);
+console.log(weatherArray)
+console.log('This is weather_Array variable: ' + typeof weatherArray);
+
+// Split each string by , character
+const splitString = weatherArray.split(",");
+console.log(splitString)
+console.log('This is splitString variable: ' + typeof splitString);
+
+// Split each element of array by "" and append result to new array
+window.onload = function(){
+var i;
+var newArray = [];
+for (i = 0; i < splitString.length; i++) {
+   var temp = splitString[i]
+   const splitString2 = temp.split("\"");
+   newArray.push(splitString2[3])
+   //console.log('This is splitString2 inside loop: ' + splitString2)
+   //console.log('New array with third element: ' + newArray)
+
+}
+//Assign elements of array to id's in html
+document.getElementById("date").innerHTML = newArray[0];
+document.getElementById("time").innerHTML = newArray[1];
+document.getElementById("icon").innerHTML = newArray[4];
+document.getElementById("temperature").innerHTML = newArray[3];
+document.getElementById("rainfall").innerHTML = newArray[2];
+document.getElementById("windspeed").innerHTML = newArray[5];
+
+//This is only a test to check if images can be displayed
+var imageName = newArray[4];
+console.log('This is the image name string: ' + imageName)
+console.log('This is the image name string: ' + imageName)
+if (imageName == "clear-day") {
+document.getElementById("icon").innerHTML='<img src="static/images/clear-day.png">';
+}
+else if (imageName == "clear-night"){
+document.getElementById("icon").innerHTML='<img src="static/images/clear-night.png">';
+}
+else if (imageName == "cloudy"){
+document.getElementById("icon").innerHTML='<img src="static/images/cloudy.png">';
+}
+else if (imageName == "fog"){
+document.getElementById("icon").innerHTML='<img src="static/images/fog.png">';
+}
+else if (imageName == "partly-cloudy-day"){
+document.getElementById("icon").innerHTML='<img src="static/images/partly-cloudy-day.png">';
+}
+else if (imageName == "partly-cloudy-night"){
+document.getElementById("icon").innerHTML='<img src="static/images/partly-cloudy-night.png">';
+}
+else if (imageName == "rain"){
+document.getElementById("icon").innerHTML='<img src="static/images/rain.png">';
+}
+else if (imageName == "sleet"){
+document.getElementById("icon").innerHTML='<img src="static/images/sleet.png">';
+}
+else if (imageName == "snow"){
+document.getElementById("icon").innerHTML='<img src="static/images/snow.png">';
+}
+else if (imageName == "wind"){
+document.getElementById("icon").innerHTML='<img src="static/images/wind.png">';
+}
+else{
+document.getElementById("icon").innerHTML='<img src="static/images/unknown.png">';
+}
+
+};
+
+</script>
+<script src='https://api.darksky.net/forecast/313018b2afc91b7825d89c2740c19873/53.3498,-6.0' async defer></script>

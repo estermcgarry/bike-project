@@ -2,6 +2,7 @@
 
 var markers = {{ markers|safe }};
 
+
 var map;
 function initMap() {
     var dublinCords = {lat: 53.3476222, lng: -6.2606207};
@@ -27,7 +28,6 @@ function initMap() {
 
         marker.addListener('click', function(){
             requestStationInfo(marker.bikeStation, marker);
-
         });
 
         // Close marker when clicking somewhere else on the map
@@ -46,16 +46,33 @@ function requestStationInfo(stationNumber, marker){
     xhttp.send();
 }
 
+
+var lastOpenedInfoWindow;
 function createCallback(xhttp, stationNumber, marker) {
+
     return  function() {
+        closeLastOpenedInfoWindow();
         if (this.readyState == 4 && this.status == 200) {
             var infoWindow = new google.maps.InfoWindow({
                 content: xhttp.responseText
             });
             infoWindow.open(map, marker);
+            lastOpenedInfoWindow = infoWindow;
         }
     };
+
 }
+
+
+
+function closeLastOpenedInfoWindow() {
+    if (lastOpenedInfoWindow) {
+        lastOpenedInfoWindow.close();
+    }
+}
+
+
+
 
 
 </script>
