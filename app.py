@@ -45,7 +45,6 @@ def index():
     for i in weather_cursor:
         info = {"Date": i[0], "Time": i[1], "Rainfall": i[2], "Temperature": i[3], "Icon": i[4],"WindSpeed": i[5]}
         weather_info.append(info)
-        print(i)
     
     weather_cursor.close()
     mydb.close()
