@@ -64,7 +64,7 @@ def home(station):
     mycursor.execute("select StationNumber, StationName, AvailableBikes, AvailableBikeStands from DynamicData where StationNumber = " + station + " order by time desc limit 1;")
     message = "No information"
     for i in mycursor:
-        message = "<b>" + i[1] + "</b> <br>Available bikes: " + str(i[2]) + " <br> Available bikestands: " + str(i[3])
+        message = "<b>" + i[1] + "</b> <br>Available bikes: " + str(i[2]) + " <br> Available bikestands: " + str(i[3] + " <br> <a href=\"javascript:getDirections()\">Directions</a>")
 
     mycursor.close()
     mydb.close()
