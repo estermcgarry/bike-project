@@ -38,12 +38,12 @@ $Subject = $con->real_escape_string($_POST['subject']);
 
 
   //query to insert the variable data into the database
-$sql="INSERT INTO contactus (fname, lname, email, category, subject) VALUES ('".$Name."', '".$LastName."', '".$Email."', '".$Category."', '".$Subject."')";
+$sql="INSERT INTO Contactus (fname, lname, email, category, subject) VALUES ('".$Name."', '".$LastName."', '".$Email."', '".$Category."', '".$Subject."')";
 
 
   //Execute the query and returning a message
 if(!$result = $con->query($sql)){
-die('Error occured [' . $conn->error . ']');
+die('Error occurred [' . $conn->error . ']');
 }
 else
    echo "Thank you!";
