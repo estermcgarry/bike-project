@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<?php
+//Store login data from database into variables
+$servername = "bailebikesdb.ck068lrxfgr6.us-east-1.rds.amazonaws.com";
+$username = "admin";
+$password = "picanha123";
+$db ="BikeData"
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $db);
+
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+echo "Connected successfully";
+
+
+  //check whether submit button is pressed or not
+if((isset($_POST['submit'])))
+{
+
+
+  //fetching and storing the form data in variables
+$Name = $con->real_escape_string($_POST['fname']);
+$LastName = $con->real_escape_string($_POST['lname']);
+$Email = $con->real_escape_string($_POST['email']);
+$Category = $con->real_escape_string($_POST['category']);
+$Subject = $con->real_escape_string($_POST['subject']);
+
+
+  //query to insert the variable data into the database
+$sql="INSERT INTO contactus (fname, lname, email, category, subject) VALUES ('".$Name."', '".$LastName."', '".$Email."', '".$Category."', '".$Subject."')";
+
+
+  //Execute the query and returning a message
+if(!$result = $con->query($sql)){
+die('Error occured [' . $conn->error . ']');
+}
+else
+   echo "Thank you!";
+}
+?>
+
+
+</body>
+</html>
