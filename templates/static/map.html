@@ -1,13 +1,16 @@
 <script>
 
 var markers = {{ markers|safe }};
-
 var userMarker;
 var map;
-function initMap() {
-    var directionsService = new google.maps.DirectionsService();
-    var directionsRenderer = new google.maps.DirectionsRenderer();
+var lastClickedMarker;
+var directionsService;
+var directionsRenderer;
+var lastOpenedInfoWindow;
 
+function initMap() {
+    directionsService = new google.maps.DirectionsService();
+    directionsRenderer = new google.maps.DirectionsRenderer();
 
     var dublinCords = {lat: 53.3476222, lng: -6.2606207};
     var mapOptions = {center: dublinCords, zoom: 14};
@@ -31,38 +34,18 @@ function initMap() {
             bikeStation: newMarker.number
         });
 
+        // show infoWindow
         marker.addListener('click', function(){
             requestStationInfo(marker.bikeStation, marker);
+            lastClickedMarker = marker;
         });
 
-
-        marker.addListener('dblclick', function(){
-
-            var stationLatLng = marker.getPosition();
-            var userMarkerLatLng = userMarker.getPosition();
-
-            alert(stationLatLng);
-            alert(userMarkerLatLng);
-
-            var request = {
-                origin: userMarkerLatLng,
-                destination: stationLatLng,
-                travelMode: 'DRIVING'
-            };
-            directionsService.route(request, function(result, status) {
-                if (status == 'OK') {
-                    directionsRenderer.setDirections(result);
-                }
-            });
-        });
-
-        // Close marker when clicking somewhere else on the map
-        google.maps.event.addListener(map, 'click', function(){
-            infoWindow.close(map, marker);
-        });
     };
+    // get users current location
+    getLocation();
 };
 
+// function gets called when user clicks on a marker
 function requestStationInfo(stationNumber, marker){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = createCallback(xhttp, stationNumber, marker);
@@ -70,9 +53,8 @@ function requestStationInfo(stationNumber, marker){
     xhttp.send();
 }
 
-var lastOpenedInfoWindow;
+//function gets called to show new infoWindow when request for station info returns
 function createCallback(xhttp, stationNumber, marker) {
-
     return  function() {
         closeLastOpenedInfoWindow();
         if (this.readyState == 4 && this.status == 200) {
@@ -85,27 +67,48 @@ function createCallback(xhttp, stationNumber, marker) {
     };
 }
 
+// function to close last opened infoWindow
 function closeLastOpenedInfoWindow() {
     if (lastOpenedInfoWindow) {
         lastOpenedInfoWindow.close();
     }
 }
 
-
-var x = document.getElementById("location");
+// function to get users location
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
+        navigator.geolocation.getCurrentPosition(getLocationCallback);
     } else {
+        var x = document.getElementById("location");
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
 }
 
-function showPosition(position) {
+// function to add user marker to map
+function getLocationCallback(position) {
     userMarker = new google.maps.Marker({
         position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
         map: map,
-        title: 'user position'
+        title: 'user position',
+        icon: 'static/markers/blue_MarkerA.png'
+    });
+}
+
+// show direction from user to marker
+function getDirections(){
+    var stationLatLng = lastClickedMarker.getPosition();
+    var userMarkerLatLng = userMarker.getPosition();
+
+    var request = {
+        origin: userMarkerLatLng,
+        destination: stationLatLng,
+        travelMode: 'WALKING'
+    };
+
+    directionsService.route(request, function(result, status) {
+        if (status == 'OK') {
+            directionsRenderer.setDirections(result);
+        }
     });
 }
 
