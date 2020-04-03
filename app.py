@@ -13,7 +13,7 @@ GoogleMaps(app)
 
 @app.route('/')
 def index():
-
+    # Connecting to DB
     mydb = mysql.connector.connect(
         host="bailebikesdb.ck068lrxfgr6.us-east-1.rds.amazonaws.com",
         user="admin",
@@ -22,13 +22,35 @@ def index():
     )
 
     mycursor = mydb.cursor()
-    mycursor.execute("SELECT StationNumber, StationName, Latitude, Longitude FROM StaticData ORDER BY StationName ASC;")
+
+    # Joining 2 tables in our DB to get the info wer're using on your site
+    mycursor.execute("""SELECT static.StationNumber,
+    static.StationName,
+    static.Latitude,
+    static.Longitude,
+    available_info.AvailableBikes,
+    available_info.AvailableBikeStands
+    FROM StaticData static
+    INNER JOIN (
+    select distinct t1.StationNumber,
+                    t1.AvailableBikes,
+                    t1.AvailableBikeStands
+    from DynamicData t1
+    inner join
+    (select StationNumber, max(concat(date, ' ', time)) as max_date_time
+    from DynamicData
+    group by StationNumber) t2
+    on t1.StationNumber = t2.StationNumber
+                      and concat(t1.Date, ' ', t1.Time) = t2.max_date_time
+    ) available_info on static.StationNumber = available_info.StationNumber
+    ORDER BY StationNumber ASC""")
 
     markers = []
     station_names = []
 
     for i in mycursor:
-        station = {"number": i[0], "name" : i[1], "latitude" : i[2], "longitude" : i[3]}
+        # Selecting all the information we need for features involving markers
+        station = {"number": i[0], "name" : i[1], "latitude" : i[2], "longitude" : i[3], "available_bikes" : i[4], "available_bike_stands" : int(i[5])}
         markers.append(station)
 
         # Selecting information to be used in the dropdown menu
@@ -38,18 +60,20 @@ def index():
     mycursor.close()
 
     weather_cursor = mydb.cursor()
-    weather_cursor.execute("SELECT * FROM WeatherData WHERE Date=(SELECT max(Date) FROM WeatherData) ORDER BY Time DESC LIMIT 1;")
+    weather_cursor.execute("SELECT * FROM WeatherData WHERE Date=(SELECT max(Date) FROM WeatherData) ORDER BY Date DESC, Time DESC LIMIT 1;")
 
     #Store weather info into a dictionary
     weather_info = []
     for i in weather_cursor:
         info = {"Date": i[0], "Time": i[1], "Rainfall": i[2], "Temperature": i[3], "Icon": i[4],"WindSpeed": i[5]}
         weather_info.append(info)
-    
+
     weather_cursor.close()
     mydb.close()
 
+    # returning information to our index, making python variables available to be used in a HTML file
     return render_template('index.html', markers=json.dumps(markers), station_names=json.dumps(station_names), weather_info=json.dumps(weather_info))
+
 
 @app.route('/station/<station>')
 def home(station):
@@ -59,13 +83,14 @@ def home(station):
         passwd="picanha123",
         database='BikeData'
     )
-
     mycursor = mydb.cursor()
-    mycursor.execute("select StationNumber, StationName, AvailableBikes, AvailableBikeStands from DynamicData where StationNumber = " + station + " order by time desc limit 1;")
+
+    # Getting information on Dabatabase from to display up to date info Windown for markers
+    mycursor.execute("select StationNumber, StationName, AvailableBikes, AvailableBikeStands from DynamicData where StationNumber = " + station + " order by Date DESC, Time DESC limit 1;")
     message = "No information"
     for i in mycursor:
+        # info Window - HTML
         message = "<b>" + i[1] + "</b> <br>Available bikes: " + str(i[2]) + " <br> Available bikestands: " + str(i[3] + " <br> <a href=\"javascript:getDirections()\">Directions</a>")
-
     mycursor.close()
     mydb.close()
     return message
