@@ -43,7 +43,7 @@ def index():
     on t1.StationNumber = t2.StationNumber
                       and concat(t1.Date, ' ', t1.Time) = t2.max_date_time
     ) available_info on static.StationNumber = available_info.StationNumber
-    ORDER BY StationNumber ASC""")
+    ORDER BY static.StationName ASC""")
 
     markers = []
     station_names = []
