@@ -36,11 +36,11 @@ function initMap() {
         total_stands = newMarker.available_bikes + newMarker.available_bike_stands;
         var percentageAvailable = newMarker.available_bikes * 100 / total_stands;
         if (percentageAvailable < 30){
-            iconUsed = 'red_MarkerA.png'
+            iconUsed = 'orange.png'
         } else if (percentageAvailable < 60){
-            iconUsed = 'yellow_MarkerA.png'
+            iconUsed = 'yellow.png'
         } else {
-            iconUsed = 'green_MarkerA.png'
+            iconUsed = 'green.png'
         };
 
         // Adding position of marker, name, number and type of icon to map
@@ -49,7 +49,7 @@ function initMap() {
             map: map,
             title: newMarker.name,
             bikeStation: newMarker.number,
-            icon: 'static/markers1/' + iconUsed
+            icon: 'static/markers/' + iconUsed
 
         });
 
@@ -118,7 +118,7 @@ function getLocationCallback(position) {
         position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
         map: map,
         title: 'user position',
-        icon: 'static/markers/blue.svg'
+        icon: 'static/markers/blue.png'
     });
 }
 
