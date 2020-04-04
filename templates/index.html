@@ -24,6 +24,29 @@
 
     <hr class="m-0">
 
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="plan-trip">
+      <div class="w-100">
+        <h2 class="mb-5">Plan Your Trip</h2>
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+            <form>
+    
+                <!-- Dropdown Menu -->
+                <select id="stations" required>
+                </select>
+                
+                <!-- Submit Button -->
+                <button type="button" onclick="displayResults()">Submit</button>
+            
+            </form>
+        </div>
+
+      </div>
+  </section>
+    
+
+    <hr class="m-0">
+
+
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="weather">
       <div class="w-100">
         <h2 class="mb-5">Weather Forecast</h2>
@@ -41,33 +64,9 @@
             <span class="text-primary">Provided By: Dark Sky</span>
           </div>
         </div>
-
-
       </div>
     </section>
 
-    <hr class="m-0">
-
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="plan-trip">
-        <div class="w-100">
-          <h2 class="mb-5">Plan Your Trip</h2>
-          <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
-              <form>
-      
-                  <!-- Dropdown Menu -->
-                  <select id="stations" required>
-                  </select>
-                  
-                  <!-- Submit Button -->
-                  <button type="button" onclick="displayResults()">Submit</button>
-              
-              </form>
-          </div>
-  
-          
-  
-        </div>
-    </section>
     
     <hr class="m-0">
 
@@ -113,27 +112,46 @@
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="contact">
       <div class="w-100">
         <h2 class="mb-5">Contact</h2>
-        <form action="/action_page.php">
-          <label for="fname">First Name</label><br>
-          <input type="text" id="fname" name="firstname" placeholder="Your name.."><br>
-      
-          <label for="lname">Last Name</label><br>
-          <input type="text" id="lname" name="lastname" placeholder="Your last name.."><br>
-      
-          <label for="enail">Email</label><br>
-          <input type="text" id="email" name="email" placeholder="Your email.."><br>
-      
-          <label for="category">Category</label><br>
-          <select id="category" name="category">
-            <option value="login">Login</option>
-            <option value="longterm">Long term subscription</option>
-            <option value="shortterm">Short term subscription</option>
-            <option value="report">Report an incident</option>
-            <option value="other">Other</option>
-          </select><br>
-      
-          <label for="subject">Subject</label><br>
-          <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+        <form action="/">
+
+          <table>
+            <tr>
+              <td><label for="fname">First Name</label></td>
+              <td><label for="lname">Last Name</label></td>
+              <td><label for="enail">Email</label></td>
+              
+            </tr>
+            <tr>
+              <td><input type="text" id="fname" name="firstname" placeholder=""></td>
+              <td><input type="text" id="lname" name="lastname" placeholder=""></td>
+              <td><input type="text" id="email" name="email" placeholder=""></td>
+            </tr>
+            <tr>
+              <td colspan="3" class="tbl-separator"></td>
+            </tr>
+            <tr>
+              <td><label for="category">Category</label></td>
+            </tr>
+            <tr>
+              <td colspan="2"><select id="category" name="category">
+                <option value="login">Login</option>
+                <option value="longterm">Long term subscription</option>
+                <option value="shortterm">Short term subscription</option>
+                <option value="report">Report an incident</option>
+                <option value="other">Other</option>
+              </select></td>
+            </tr>
+            <tr>
+              <td colspan="3" class="tbl-separator"></td>
+            </tr>
+            <tr>
+              <td><label for="subject">Subject</label></td>
+            </tr>
+            <tr>
+              <td colspan="4"><textarea id="subject" name="subject" placeholder="Write something.." style="height:150px; width:500px"></textarea></td>
+            </tr>
+          </table>
+
       
           <input type="submit" value="Submit">
         </form>
