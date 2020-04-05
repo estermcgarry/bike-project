@@ -2,18 +2,15 @@
    
 //Information from weather api stored as object type
 var weather_info = {{ weather_info|safe }};
-console.log(weather_info);
-console.log('This is weather_info variable: ' + typeof weather_info);
+
 
 //Convert object into string and create an array with 6 string elements
 var weatherArray = JSON.stringify(weather_info);
-console.log(weatherArray)
-console.log('This is weather_Array variable: ' + typeof weatherArray);
+
 
 // Split each string by , character
 const splitString = weatherArray.split(",");
-console.log(splitString)
-console.log('This is splitString variable: ' + typeof splitString);
+
 
 // Split each element of array by "" and append result to new array
 window.onload = function(){
@@ -23,8 +20,7 @@ for (i = 0; i < splitString.length; i++) {
    var temp = splitString[i]
    const splitString2 = temp.split("\"");
    newArray.push(splitString2[3])
-   //console.log('This is splitString2 inside loop: ' + splitString2)
-   //console.log('New array with third element: ' + newArray)
+
 
 }
 //Assign elements of array to id's in html
@@ -35,10 +31,10 @@ document.getElementById("temperature").innerHTML = newArray[3];
 document.getElementById("rainfall").innerHTML = newArray[2];
 document.getElementById("windspeed").innerHTML = newArray[5];
 
-//This is only a test to check if images can be displayed
+//Checks if icon name is equal to any of the images name into folder 'images'
+//If image names match, displays the correct image. If does not match display 'unkown' image.
 var imageName = newArray[4];
-console.log('This is the image name string: ' + imageName)
-console.log('This is the image name string: ' + imageName)
+
 if (imageName == "clear-day") {
 document.getElementById("icon").innerHTML='<img src="static/images/clear-day.png">';
 }
