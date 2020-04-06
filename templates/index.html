@@ -1,7 +1,8 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-
+// script to display chart
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <div class="container-fluid p-0">
 
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="dublin-bikes">
@@ -35,10 +36,13 @@
                 </select>
                 
                 <!-- Submit Button -->
-                <button type="button" onclick="displayResults()">Submit</button>
+                <button type="button" onclick="drawMultSeries()">Submit</button>
             
             </form>
+
+
         </div>
+        <div id="chart_div"></div>
 
       </div>
   </section>

@@ -23,4 +23,48 @@
     //Adding the dropdown list to the html
     document.getElementById("stations").innerHTML = infoDropdownList;
 
+
+// display chart on submit click
+google.charts.load('current', {packages: ['corechart', 'bar']});
+
+function drawMultSeries() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('timeofday', 'Time of Day');
+      data.addColumn('number', 'Energy Level');
+
+      data.addRows([
+        [{v: [8, 0, 0], f: '8 am'}, .25],
+        [{v: [9, 0, 0], f: '9 am'}, .5],
+        [{v: [10, 0, 0], f:'10 am'}, 1],
+        [{v: [11, 0, 0], f: '11 am'}, 2.25],
+        [{v: [12, 0, 0], f: '12 pm'}, 2.25],
+        [{v: [13, 0, 0], f: '1 pm'}, 3],
+        [{v: [14, 0, 0], f: '2 pm'}, 4],
+        [{v: [15, 0, 0], f: '3 pm'}, 5.25],
+        [{v: [16, 0, 0], f: '4 pm'}, 7.5],
+        [{v: [17, 0, 0], f: '5 pm'}, 10],
+      ]);
+
+      var options = {
+        title: 'Motivation and Energy Level Throughout the Day',
+        hAxis: {
+          title: 'Time of Day',
+          format: 'h:mm a',
+          viewWindow: {
+            min: [7, 30, 0],
+            max: [17, 30, 0]
+          }
+        },
+        vAxis: {
+          title: 'Rating (scale of 1-10)'
+        }
+      };
+
+      var chart = new google.visualization.ColumnChart(
+        document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+    }
+
+
 </script>
