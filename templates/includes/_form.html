@@ -1,5 +1,30 @@
 
 <script>
+  var xmlhttp = new XMLHttpRequest();
+  // var url = "avg_weekday.json";
+  // var myJson = null;
+
+  // xmlhttp.onreadystatechange = function() {
+  //     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+  //         myJson = JSON.parse(xmlhttp.responseText);
+  //         console.log(myJson);
+
+  //     }
+  // };
+
+  // xmlhttp.open("GET", url, true);
+  // xmlhttp.send();
+
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var myObj = JSON.parse(this.responseText);
+        console.log(myObj);
+      }
+    };
+    xmlhttp.open("GET", "avg_weekday.json", true);
+    xmlhttp.send();
+
     //Array containing the markers info
     var markers = {{ markers|safe }};
     console.log(markers);
@@ -26,6 +51,7 @@
     
     //Adding the dropdown list to the html
     document.getElementById("stations").innerHTML = infoDropdownList;
+
 
 
 // display chart on submit click
