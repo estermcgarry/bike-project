@@ -20,12 +20,29 @@ for (i = 0; i < splitString.length; i++) {
    var temp = splitString[i]
    const splitString2 = temp.split("\"");
    newArray.push(splitString2[3])
-
-
 }
+//Add 1 hour to the time info because of daylight saving time reduced hour.
+//This code can be ignored by passing newArray[1] to time id instead timeconcat.
+
+//Split the time string and convert hours to int
+var timeasstring = newArray[1];
+var hour = timeasstring.split(":", 1);
+var num = parseInt(hour);
+
+//Add + 1 to the integer (hour) and convert back into string
+var newhour = num + 1;
+var previoushour = newArray[1]
+var sepprevious = previoushour.split(/:(.+)/)[1];
+var hourtostr = newhour.toString();
+
+//Concat the new hour string to the minutes and seconds string
+var sep = ":"
+var timeconcat = hourtostr.concat(sep,sepprevious);
+
+
 //Assign elements of array to id's in html
 document.getElementById("date").innerHTML = newArray[0];
-document.getElementById("time").innerHTML = newArray[1];
+document.getElementById("time").innerHTML = timeconcat;
 document.getElementById("icon").innerHTML = newArray[4];
 document.getElementById("temperature").innerHTML = newArray[3];
 document.getElementById("rainfall").innerHTML = newArray[2];
