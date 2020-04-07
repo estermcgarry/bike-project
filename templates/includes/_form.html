@@ -1,29 +1,20 @@
 
 <script>
-  // var xmlhttp = new XMLHttpRequest();
-  // var url = "avg_weekday.json";
-  // var myJson = null;
+  var xmlhttp = new XMLHttpRequest();
+  var url = "static/avg_weekday.json";
+  var myJson = null;
 
-  // xmlhttp.onreadystatechange = function() {
-  //     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-  //         myJson = JSON.parse(xmlhttp.responseText);
-  //         console.log(myJson);
+  xmlhttp.onreadystatechange = function() {
+      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          myJson = JSON.parse(xmlhttp.responseText);
+          console.log(myJson);
 
-  //     }
-  // };
-
-  // xmlhttp.open("GET", url, true);
-  // xmlhttp.send();
-
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        var myObj = JSON.parse(this.responseText);
-        console.log(myObj);
       }
-    };
-    xmlhttp.open("GET", "avg_weekday.json", true);
-    xmlhttp.send();
+  };
+
+  xmlhttp.open("GET", url, true);
+  xmlhttp.send();
+
 
     //Array containing the markers info
     var markers = {{ markers|safe }};
@@ -58,7 +49,13 @@
 google.charts.load('current', {packages: ['corechart', 'bar']});
 
 
-function showAverageHourly(station) {
+function showAverageHourly() {
+      // var selected = document.getElementById("stations").value;
+      // for (var i=0; i < myObj.length; i++) {
+      //   if (myObj.selected==selected) {
+          
+      //   }
+      // }
       var data = new google.visualization.DataTable();
       data.addColumn('timeofday', 'Time of Day');
       data.addColumn('number', 'Available Bikes');
