@@ -32,7 +32,7 @@
 google.charts.load('current', {packages: ['corechart', 'bar']});
 
 
-function showPredictionModel(station) {
+function showAverageHourly(station) {
       var data = new google.visualization.DataTable();
       data.addColumn('timeofday', 'Time of Day');
       data.addColumn('number', 'Available Bikes');
@@ -75,6 +75,38 @@ function showPredictionModel(station) {
         document.getElementById('chart_div'));
 
       chart.draw(data, options);
-    }
+}
+
+function showAverageDaily(station) {
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Weekday');
+      data.addColumn('number', 'Available Bikes');
+
+      data.addRows([
+        ['Monday', 10],
+        ['Tuesday', 10],
+        ['Wednesday', .25],
+        ['Thursday', .5],
+        ['Friday', 1],
+        ['Saturday', 2.25],
+        ['Sunday', 2.25]
+        ]);
+
+      var options = {
+        title: 'Prediction of available bikes on Weekdays',
+        hAxis: {
+          title: 'Weekday'
+        },
+        vAxis: {
+          title: 'Average number of available bikes'
+        }
+      };
+
+      var chart = new google.visualization.ColumnChart(
+        document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+}
+
 
 </script>

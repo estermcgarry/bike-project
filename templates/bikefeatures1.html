@@ -2,16 +2,40 @@
 <html lang="eng">
 <head></head>
  <body>
-<style>
 
+<style>
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
 </style>
+
 
 <header></header>
 <h1></h1>
 
 
-<img src="images/newbike.jpg" width="700" height="488"  alt= "workm" usemap="#workmap" >
-<map name="workmap">
+<img src="images/newbike.jpg" width="700" height="488"  alt= "workm" usemap="static/images/newbike" >
+<map name="static/images/newbike">
 
 <!--
 https://www.youtube.com/watch?v=7zNlu6-Wygg BOLINHA VERDE
@@ -20,8 +44,10 @@ https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_arrow_top
 
 This is the code that displays the name of the feature with no popup style!
 -->
-
+  <div class="tooltip">
   <area  title="Simple and quick three gear change" shape="circle" coords="391,27,20" href="" >
+  </div>
+
   <area title="Adjustable cushioned saddle" shape="circle" coords="211,129,20" href=""  >
   <area title="Large capacity durable front basket"  shape="circle" coords="575,99,20" href="" >
   <area title="Non-slip handlebars" shape="circle" coords="356,32,23" href="phone.htm">
