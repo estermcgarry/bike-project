@@ -68,10 +68,10 @@ function showAverageHourly() {
   for (var i in avgHourly) {
     if (i==selectedStation) {
       var station=i;
-      for (var j in i) {
+      for (var j in station) {
         if(j==selectedWeekday) {
-          weekday=j;
-          console.log(weekday["6"]);
+          var weekday=j;
+          console.log(weekday);
         }
       }
     }   
@@ -84,7 +84,7 @@ function showAverageHourly() {
       data.addColumn('number', 'Available Bikes');
 
       data.addRows([
-        [{v: [6, 0, 0], f: '6 pm'}, j["6"]],
+        [{v: [6, 0, 0], f: '6 pm'}, 2],
         [{v: [7, 0, 0], f: '7 pm'}, 10],
         [{v: [8, 0, 0], f: '8 am'}, .25],
         [{v: [9, 0, 0], f: '9 am'}, .5],
