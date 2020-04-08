@@ -3,56 +3,41 @@
 <head></head>
  <body>
 <style>
+
 .tooltip {
-  position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black;
+    text-decoration:none;
+    position:relative;
 }
-
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: green;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-  position: absolute;
-  z-index: 1;
-  top: 150%;
-  left: 50%;
-  margin-left: -60px;
+.tooltip span {
+    display:none;
 }
-
-.tooltip .tooltiptext::after {
-  content: "";
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: transparent transparent black transparent;
-}
-
-.tooltip:hover .tooltiptext {
-  visibility: visible;
+.tooltip:hover span {
+    display:block;
+    position:fixed;
+    overflow:hidden;
+    width:200px;
+    padding: 15px;
+    background:rgba(255,255,255,1);
+    border-radius:6px;
+    margin:-105px 0 0 -100px;
+    box-shadow:0 0 50px 0 rgba(0,0,0,.5);
+    text-align: center;
 }
 </style>
+<header>OUR BIKES</header>
+<h1>A great inexpensive and sustainable form of exercise</h1>
+     <h3>Baile bikes have been uniquely designed for Dublin city, designed with your confort and safety in mind.</h3>
+<br>
+<h2>Mouse over the green dots to learn more about the features of Baile Bike</h2>
 
-<header></header>
-<h1></h1>
 
 
-<img src="images/newbike.jpg" alt= "workm" usemap="#workmap" >
+<br /><br />
+<img src="images/newgreen1.png" alt= "workm" usemap="#workmap" >
 <map name="workmap">
 
-<!--
-This is the code with popup info, but the info is display at the bottom of the image.
 
-https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_display_element_hover
-https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_arrow_top
--->
+<!--Each green spot in the image refers to a area tag bellow-->
 <div class="tooltip">
   <span class="tooltiptext">Simple and quick three gear change</span>
   <area class="tooltiptext" shape="circle" coords="391,27,20" href="">
@@ -138,10 +123,22 @@ https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_arrow_top
 </div>
 
 
-
-        </map>
+</map>
 </body>
 </html>
 <script>
+
+
+//Uses on mouse event and client x/y coordenates property to display the
+//tooltip next to the mouse ref for each area mapped in the image
+var tooltips = document.querySelectorAll('.tooltip span');
+window.onmousemove = function (e) {
+    var x = (e.clientX + 20) + 'px',
+        y = (e.clientY + 20) + 'px';
+    for (var i = 0; i < tooltips.length; i++) {
+        tooltips[i].style.top = y;
+        tooltips[i].style.left = x;
+    }
+};
 
 </script>

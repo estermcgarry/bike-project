@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 10;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* The grid: Three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 50px;
+  text-align: center;
+  font-size: 25px;
+  cursor: pointer;
+  color: white;
+}
+
+.containerTab {
+  padding: 20px;
+  color: white;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Closable button inside the container tab */
+.closebtn {
+  float: right;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<h2>Subscription</h2>
+<p>Baile bikes make it possible for everyone to enjoy short journeys in the city.</p>
+
+
+<!-- Three columns -->
+<div class="row">
+  <div class="column" onclick="openTab('b1');" style="background:#00e64d;">
+    Rental Charges
+  </div>
+  <div class="column" onclick="openTab('b2');" style="background:#7ab87a;">
+    The 3 Day Ticket
+  </div>
+  <div class="column" onclick="openTab('b3');" style="background:#339966;">
+    Anual Card
+  </div>
+</div>
+
+<!-- Full-width columns: (hidden by default) -->
+<div id="b1" class="containerTab" style="display:none;background:#00e64d">
+  <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <h2>Enjoy the first half-hour of each journey for free!</h2>
+    <ul>
+  <li>Up to 1 hour €0.50</li>
+  <li>Up to 2 hours €1.50</li>
+  <li>Up to 3 hours €3.50</li>
+  <li>Up to 4 hours €6.50</li>
+  <li>Every extra 1/ hour €2.00</li>
+  <li>can be purchased from any of the credit card terminals for just €5.</li>
+</ul>
+
+</div>
+
+<div id="b2" class="containerTab" style="display:none;background:#7ab87a">
+  <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+      <h2>For occasional use, choose the 3 Day Ticket option. These tickets are convenient for short term users.</h2>
+  <ul>
+  <li>The first half-hour of each journey is free.</li>
+  <li>These tickets are convenient for short term users.</li>
+  <li>Ideal if you only want to use now and again, or you are a visitor to Dublin</li>
+  <li>can be purchased from any of the credit card terminals for just €5.</li>
+</ul>
+</div>
+
+<div id="b3" class="containerTab" style="display:none;background:#339966">
+  <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <h2>The simple, easy and convenient way to enjoy Baile bike all year round. </h2>
+  <ul>
+  <li>The first half-hour of each journey is free.</li>
+  <li>With the Annual card, you pay €25 and can rent a bike whenever you want. </li>
+  <li>You can also associate a Leap Card with the system, which can then be used instead of your Baile bike annual card.</li>
+</ul>
+</div>
+
+<script>
+
+// On click displays the container tab
+function openTab(tabName) {
+  var i, x;
+  x = document.getElementsByClassName("containerTab");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  document.getElementById(tabName).style.display = "block";
+}
+</script>
+
+</body>
+</html>
