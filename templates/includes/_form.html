@@ -62,14 +62,29 @@ google.charts.load('current', {packages: ['corechart', 'bar']});
 
 
 function showAverageHourly() {
+  var selectedStation = document.getElementById("stations").value;
   var selectedWeekday = document.getElementById("weekday").value; 
-  
+
+  for (var i in avgHourly) {
+    if (i==selectedStation) {
+      var station=i;
+      for (var j in i) {
+        if(j==selectedWeekday) {
+          weekday=j;
+          console.log(weekday["6"]);
+        }
+      }
+    }   
+  }
+
+
+
       var data = new google.visualization.DataTable();
       data.addColumn('timeofday', 'Time of Day');
       data.addColumn('number', 'Available Bikes');
 
       data.addRows([
-        [{v: [6, 0, 0], f: '6 pm'}, 10],
+        [{v: [6, 0, 0], f: '6 pm'}, j["6"]],
         [{v: [7, 0, 0], f: '7 pm'}, 10],
         [{v: [8, 0, 0], f: '8 am'}, .25],
         [{v: [9, 0, 0], f: '9 am'}, .5],
@@ -103,7 +118,7 @@ function showAverageHourly() {
       };
 
       var chart = new google.visualization.ColumnChart(
-        document.getElementById('chart_div'));
+        document.getElementById('chart_hourly'));
 
       chart.draw(data, options);
 }
@@ -173,7 +188,7 @@ function showAverageDaily() {
       
       if (selectedStation) {
         var chart = new google.visualization.ColumnChart(
-        document.getElementById('chart_div'));
+        document.getElementById('chart_weekly'));
 
         chart.draw(data, options);
 
