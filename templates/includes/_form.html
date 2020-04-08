@@ -3,11 +3,11 @@
   // Parsing avg_weekday json file
   var xmlhttp = new XMLHttpRequest();
   var url = "static/avg_weekday.json";
-  var avg_weekday = null;
+  var avgWeekday = null;
 
   xmlhttp.onreadystatechange = function() {
       if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        avg_weekday = JSON.parse(xmlhttp.responseText);
+        avgWeekday = JSON.parse(xmlhttp.responseText);
       }
   };
 
@@ -17,11 +17,11 @@
   // Parsing avg_hourly json file
   var xmlhttp2 = new XMLHttpRequest();
   var url2 = "static/avg_hourly.json";
-  var avg_hourly = null;
+  var avgHourly = null;
 
   xmlhttp2.onreadystatechange = function() {
       if (xmlhttp2.readyState == 4 && xmlhttp2.status == 200) {
-        avg_hourly = JSON.parse(xmlhttp2.responseText);
+        avgHourly = JSON.parse(xmlhttp2.responseText);
       }
   };
 
@@ -62,13 +62,8 @@ google.charts.load('current', {packages: ['corechart', 'bar']});
 
 
 function showAverageHourly() {
+  var selectedWeekday = document.getElementById("weekday").value; 
   
-      // var selected = document.getElementById("stations").value;
-      // for (var i=0; i < myObj.length; i++) {
-      //   if (myObj.selected==selected) {
-          
-      //   }
-      // }
       var data = new google.visualization.DataTable();
       data.addColumn('timeofday', 'Time of Day');
       data.addColumn('number', 'Available Bikes');
@@ -114,16 +109,16 @@ function showAverageHourly() {
 }
 
 function showAverageDaily() {
-  var selected = document.getElementById("stations").value;
+  var selectedStation = document.getElementById("stations").value;
 
   // Finding the info about the station selected in the json file
   // And assigning it to var station
-  for (var i in avg_weekday) {
-    if (i==selected) {
-      var station=avg_weekday[i];
+  for (var i in avgWeekday) {
+    if (i==selectedStation) {
+      var station=avgWeekday[i];
     }
   }
-  console.log(station);
+  
   // Creating variables for the days of the week and assigning to them the avg availability of bikes
   // Given the station the user selected
   for (var j in station) {
@@ -175,11 +170,16 @@ function showAverageDaily() {
           title: 'Average number of available bikes'
         }
       };
-
-      var chart = new google.visualization.ColumnChart(
+      
+      if (selectedStation) {
+        var chart = new google.visualization.ColumnChart(
         document.getElementById('chart_div'));
 
-      chart.draw(data, options);
+        chart.draw(data, options);
+
+        document.querySelector('#weekday-dropdown').style.display = 'flex';
+      }
+          
 }
 
 
