@@ -1,20 +1,32 @@
 
 <script>
+  // Parsing avg_weekday json file
   var xmlhttp = new XMLHttpRequest();
   var url = "static/avg_weekday.json";
-  var myJson = null;
+  var avg_weekday = null;
 
   xmlhttp.onreadystatechange = function() {
       if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-          myJson = JSON.parse(xmlhttp.responseText);
-          console.log(myJson);
-
+        avg_weekday = JSON.parse(xmlhttp.responseText);
       }
   };
 
   xmlhttp.open("GET", url, true);
   xmlhttp.send();
 
+  // Parsing avg_hourly json file
+  var xmlhttp2 = new XMLHttpRequest();
+  var url2 = "static/avg_hourly.json";
+  var avg_hourly = null;
+
+  xmlhttp2.onreadystatechange = function() {
+      if (xmlhttp2.readyState == 4 && xmlhttp2.status == 200) {
+        avg_hourly = JSON.parse(xmlhttp2.responseText);
+      }
+  };
+
+  xmlhttp2.open("GET", url2, true);
+  xmlhttp2.send();
 
     //Array containing the markers info
     var markers = {{ markers|safe }};
@@ -28,7 +40,7 @@
     var infoDropdownList = '';
     
     //Setting default and firstvalue for the dropdown menu
-    infoDropdownList += '<option value="Default">Select your station</option>';
+    infoDropdownList += '<option value="">Select your station</option>';
     
     //Looping through the stations array (var infoDropdown)
     for (var i = 0; i < infoDropdown.length; i++) {
@@ -50,6 +62,7 @@ google.charts.load('current', {packages: ['corechart', 'bar']});
 
 
 function showAverageHourly() {
+  
       // var selected = document.getElementById("stations").value;
       // for (var i=0; i < myObj.length; i++) {
       //   if (myObj.selected==selected) {
@@ -100,19 +113,57 @@ function showAverageHourly() {
       chart.draw(data, options);
 }
 
-function showAverageDaily(station) {
+function showAverageDaily() {
+  var selected = document.getElementById("stations").value;
+
+  // Finding the info about the station selected in the json file
+  // And assigning it to var station
+  for (var i in avg_weekday) {
+    if (i==selected) {
+      var station=avg_weekday[i];
+    }
+  }
+  console.log(station);
+  // Creating variables for the days of the week and assigning to them the avg availability of bikes
+  // Given the station the user selected
+  for (var j in station) {
+    switch(j) {
+      case 'monday':
+        var monday=station[j];
+        break;
+      case 'tuesday':
+        var tuesday=station[j];
+        break;
+      case 'wednesday':
+        var wednesday=station[j];
+        break;
+      case 'thursday':
+        var thursday=station[j];
+        break;
+      case 'friday':
+        var friday=station[j];
+        break;
+      case 'saturday':
+        var saturday=station[j];
+        break;
+      case 'sunday':
+        var sunday=station[j];
+        break;
+    } 
+  }
+
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'Weekday');
       data.addColumn('number', 'Available Bikes');
 
       data.addRows([
-        ['Monday', 10],
-        ['Tuesday', 10],
-        ['Wednesday', .25],
-        ['Thursday', .5],
-        ['Friday', 1],
-        ['Saturday', 2.25],
-        ['Sunday', 2.25]
+        ['Monday', monday],
+        ['Tuesday', tuesday],
+        ['Wednesday', wednesday],
+        ['Thursday', thursday],
+        ['Friday', friday],
+        ['Saturday', saturday],
+        ['Sunday', sunday]
         ]);
 
       var options = {
