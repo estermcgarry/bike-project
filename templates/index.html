@@ -1,8 +1,24 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<!--script to display chart-->
+<!----script to display chart---->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+<!----script for our bikes hover actions---->
+<script>
+  //Uses on mouse event and client x/y coordenates property to display the
+  //tooltip next to the mouse ref for each area mapped in the image
+  var tooltips = document.querySelectorAll('.tooltip span');
+  window.onmousemove = function (e) {
+      var x = (e.clientX + 20) + 'px',
+          y = (e.clientY + 20) + 'px';
+      for (var i = 0; i < tooltips.length; i++) {
+          tooltips[i].style.top = y;
+          tooltips[i].style.left = x;
+      }
+  };  
+</script>
 
 <div class="container-fluid p-0">
 
@@ -123,9 +139,98 @@
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="our-bikes">
       <div class="w-100">
         <h2 class="mb-5">Our Bikes</h2>
-        <p>Apart from being a web developer, I enjoy most of my time being outdoors. In the winter, I am an avid skier and novice ice climber. During the warmer months here in Colorado, I enjoy mountain biking, free climbing, and kayaking.</p>
-        <p class="mb-0">When forced indoors, I follow a number of sci-fi and fantasy genre movies and television shows, I am an aspiring chef, and I spend a large amount of my free time exploring the latest technology advancements in the front-end web development world.</p>
-      </div>
+        <div class="subheading mb-3">A great inexpensive and sustainable form of exercise</div>
+        <p>Baile bikes have been uniquely designed for Dublin city, designed with your confort and safety in mind.</p>
+
+        <img src="static/images/newgreen1.png" alt= "workm" usemap="#workmap" >
+
+        <map name="workmap">
+          <!--Each green spot in the image refers to a area tag bellow-->
+          <div class="tooltip">
+            <span class="tooltiptext">Simple and quick three gear change</span>
+            <area class="tooltiptext" shape="circle" coords="391,27,20" href="#">
+          </div>
+          
+          <div class="tooltip">
+            <span class="tooltiptext">Adjustable cushioned saddle</span>
+            <area shape="circle" coords="211,129,20" href="">
+           </div>
+          
+          <div class="tooltip">
+           <span class="tooltiptext">Large capacity durable front basket</span>
+           <area shape="circle" coords="575,99,23" href="">
+          </div>
+          
+          <div class="tooltip">
+           <span class="tooltiptext">Non-slip handlebars</span>
+           <area shape="circle" coords="356,32,23" href="">
+          </div>
+          
+          <div class="tooltip">
+            <span class="tooltiptext">Anti-splash rear mud guards</span>
+            <area shape="circle" coords="140,203,23" href="" >
+          </div>
+          
+          <div class="tooltip">
+            <span class="tooltiptext">Anti-splash front mud guards</span>
+            <area shape="circle" coords="423,277,23" href="" >
+          </div>
+          
+          <div class="tooltip">
+            <span class="tooltiptext">Automatic rear lights, operating day and night</span>
+            <area shape="circle" coords="55,191,23" href="">
+          </div>
+          
+          
+          <div class="tooltip">
+            <span class="tooltiptext">Automatic front lights, operating day and night</span>
+            <area shape="circle" coords="570,158,23" href="">
+          </div>
+          
+          <div class="tooltip">
+            <span class="tooltiptext">Reflective strips on wheels </span>
+            <area shape="circle" coords="561,258,23" href="">
+          </div>
+          
+          <div class="tooltip">
+            <span class="tooltiptext">Reflective strips on wheels </span>
+            <area shape="circle" coords="541,429,23" href="">
+          </div>
+          
+          <div class="tooltip">
+            <span class="tooltiptext">Reflective strips on wheels </span>
+            <area shape="circle" coords="76,331,23" href="">
+          </div>
+          
+          <div class="tooltip">
+            <span class="tooltiptext">Rear brakes integrated in wheel hubs</span>
+            <area shape="circle" coords="129,313,23" href="">
+          </div>
+          
+          <div class="tooltip">
+            <span class="tooltiptext">Front brakes integrated in wheel hubs</span>
+            <area shape="circle" coords="531,344,23" href="">
+          </div>
+          
+          <div class="tooltip">
+            <span class="tooltiptext">Chain guard</span>
+            <area shape="circle" coords="262,312,23" href="">
+          </div>
+          
+          <div class="tooltip">
+            <span class="tooltiptext">Easy to use bike rest</span>
+            <area target="_top" alt="Easy to use bike rest" shape="circle" coords="286,393,23" href="">
+          </div>
+          
+          <div class="tooltip">
+            <span class="tooltiptext">Anti Theft Lock</span>
+            <area shape="circle" coords="508,96,23" href="">
+          </div>
+               
+        </map>
+
+
+        </div>
     </section>
 
     <hr class="m-0">
