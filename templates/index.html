@@ -115,8 +115,7 @@
               Return a bike : 24 hours</li>
            
           </ul>
-
-       
+          
       </div>
     </section>
 
@@ -216,6 +215,7 @@
     </section>
 
     <hr class="m-0">
+
       <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="our-stations">
         <div class="w-100">
           <h2 class="mb-5">Our Stations</h2>
@@ -240,7 +240,65 @@
           </div>
       </section>
 
+      <hr class="m-0">
 
+      <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="subscription">
+        <div class="w-100">
+          <h2 class="mb-5">Subscription</h2>
+          <p>Dublin bikes make it possible for everyone to enjoy short journeys in the city.</p> 
+          
+          <!-- Three columns -->
+          <div class="row">
+            <div class="column" onclick="openTab('b1');" style="background:#cff1c1; color:#353a40">
+              Rental Charges
+            </div>
+            <div class="column" onclick="openTab('b2');" style="background:#7ed957;">
+              The 3 Day Ticket
+            </div>
+            <div class="column" onclick="openTab('b3');" style="background:#53bb2a;">
+              Anual Card
+            </div>
+          </div>
+  
+          <!-- Full-width columns: (hidden by default) -->
+          <div id="b1" class="containerTab" style="display:none;background:#cff1c1; color:#353a40">
+            <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+              <p class="subheading mb-3">Enjoy the first half-hour of each journey for free!</p>
+              <ul>
+            <li>Up to 1 hour €0.50</li>
+            <li>Up to 2 hours €1.50</li>
+            <li>Up to 3 hours €3.50</li>
+            <li>Up to 4 hours €6.50</li>
+            <li>Every extra 1/ hour €2.00</li>
+            <li>can be purchased from any of the credit card terminals for just €5.</li>
+          </ul>
+          
+          </div>
+  
+          <div id="b2" class="containerTab" style="display:none;background:#7ed957">
+            <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+                <p class="subheading mb-3">For occasional use, choose the 3 Day Ticket option. These tickets are convenient for short term users.</p>
+            <ul>
+            <li>The first half-hour of each journey is free.</li>
+            <li>These tickets are convenient for short term users.</li>
+            <li>Ideal if you only want to use now and again, or you are a visitor to Dublin</li>
+            <li>can be purchased from any of the credit card terminals for just €5.</li>
+          </ul>
+          </div>
+          
+          <div id="b3" class="containerTab" style="display:none;background:#53bb2a">
+            <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+              <p class="subheading mb-3">The simple, easy and convenient way to enjoy Baile bike all year round. </p>
+            <ul>
+            <li>The first half-hour of each journey is free.</li>
+            <li>With the Annual card, you pay €25 and can rent a bike whenever you want. </li>
+            <li>You can also associate a Leap Card with the system, which can then be used instead of your Baile bike annual card.</li>
+          </ul>
+          </div>
+  
+  
+          </div>
+      </section>
 
     <hr class="m-0">
 
@@ -315,6 +373,18 @@
 </script>
 
 
+<!----script for subscription tabs---->
+<script>
+  // On click displays the container tab
+  function openTab(tabName) {
+    var i, x;
+    x = document.getElementsByClassName("containerTab");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    document.getElementById(tabName).style.display = "block";
+  }
+  </script>
 
 
 {% include 'static/weather.html' %}
