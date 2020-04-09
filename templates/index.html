@@ -96,14 +96,14 @@
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
       <div class="w-100">
         <h2 class="mb-5">About</h2>
-        <p class="subheading mb-3">Baile Bikes making journeys easier and enjoyable!</p>
+        <p class="subheading mb-3">Dublin Bikes making journeys easier and enjoyable!</p>
         <img class="img-fluid mx-auto mb-2" src="static/images/test1.jpg" alt="Logo">  
-        <p>Baile Bike is a self-service bike rental system that operates alongside existing public transport options in Dublin. It represents an alternative to commuting between home and work. It also enables you to get out and about to enjoy Dublin city at your leisure. Using Baile Bike you can avoid the heavy traffic and contribute to reducing the pollution in the atmosphere.</p>
+        <p>Dublin Bike is a self-service bike rental system that operates alongside existing public transport options in Dublin. It represents an alternative to commuting between home and work. It also enables you to get out and about to enjoy Dublin city at your leisure. Using Dublin Bike you can avoid the heavy traffic and contribute to reducing the pollution in the atmosphere.</p>
         
           <ul class="fa-ul mb-0">
             <li>
               <i class="fa-li fa fa-trophy text-warning"></i>
-              Baile Bike is open to everyone from 14 years of age.</li>
+              Dublin Bike is open to everyone from 14 years of age.</li>
             <li>
               <i class="fa-li fa fa-trophy text-warning"></i>
               The first 30 minutes of use is free on every bike</li>
@@ -125,7 +125,7 @@
       <div class="w-100">
         <h2 class="mb-5">Our Bikes</h2>
         <div class="subheading mb-3">A great inexpensive and sustainable form of exercise</div>
-        <p>Baile bikes have been uniquely designed for Dublin city, designed with your comfort and safety in mind.</p>
+        <p>Dublin bikes have been uniquely designed for Dublin city, designed with your comfort and safety in mind.</p>
 
         <img src="static/images/newgreen1.png" alt= "workm" usemap="#workmap" >
 
@@ -270,7 +270,7 @@
             <li>Up to 3 hours €3.50</li>
             <li>Up to 4 hours €6.50</li>
             <li>Every extra 1/ hour €2.00</li>
-            <li>can be purchased from any of the credit card terminals for just €5.</li>
+            <li>Can be purchased from any of the credit card terminals for just €5.</li>
           </ul>
           
           </div>
@@ -282,17 +282,17 @@
             <li>The first half-hour of each journey is free.</li>
             <li>These tickets are convenient for short term users.</li>
             <li>Ideal if you only want to use now and again, or you are a visitor to Dublin</li>
-            <li>can be purchased from any of the credit card terminals for just €5.</li>
+            <li>Can be purchased from any of the credit card terminals for just €5.</li>
           </ul>
           </div>
           
           <div id="b3" class="containerTab" style="display:none;background:#53bb2a">
             <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
-              <p class="subheading mb-3">The simple, easy and convenient way to enjoy Baile bike all year round. </p>
+              <p class="subheading mb-3">The simple, easy and convenient way to enjoy Dublin bike all year round. </p>
             <ul>
             <li>The first half-hour of each journey is free.</li>
             <li>With the Annual card, you pay €25 and can rent a bike whenever you want. </li>
-            <li>You can also associate a Leap Card with the system, which can then be used instead of your Baile bike annual card.</li>
+            <li>You can also associate a Leap Card with the system, which can then be used instead of your Dublin bike annual card.</li>
           </ul>
           </div>
   
@@ -354,26 +354,9 @@
 
 
 
-<!----script for our bikes hover actions---->
-<script>
-  //Uses on mouse event and client x/y coordenates property to display the
-  //tooltip next to the mouse ref for each area mapped in the image
-
-  var tooltips = document.querySelectorAll('.tooltip span');
-  window.onmousemove = function (e) {
-      var x = (e.clientX + 20) + 'px';
-          y = (e.clientY + 20) + 'px';
-        for (var i = 0; i < tooltips.length; i++) {
-            tooltips[i].style.top = y;
-            tooltips[i].style.left = x;
-          //console.log ('I am inside the for loop');
-        };
-      //console.log ('I am inside the function');
-  };
-</script>
 
 
-<!----script for subscription tabs---->
+<!----script for subscription tab---->
 <script>
   // On click displays the container tab
   function openTab(tabName) {
@@ -384,12 +367,13 @@
     }
     document.getElementById(tabName).style.display = "block";
   }
-  </script>
+</script>
 
 
 {% include 'static/weather.html' %}
 {% include 'static/map.html' %}
 {% include 'includes/_form.html' %}
 {% include 'includes/_contactform.html' %}
+{% include 'includes/_bikespage.html' %}
 
 {% endblock%}
