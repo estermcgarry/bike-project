@@ -70,26 +70,12 @@ google.charts.load('current', {packages: ['corechart', 'bar']});
 
 function showAverageHourly() {
   var selectedStation = document.getElementById("stations").value;
-  var selectedWeekday = document.getElementById("weekday").value; 
-
-  for (var i in avgHourly) {
-    if(i==selectedStation) {
-      var station=i;
-    }
-    console.log(i);
-    // if (i==selectedStation) {
-    //   var station=i;
-      
-    //   for (var j in station) {
-    //     if(j==selectedWeekday) {
-    //       var weekday=j;
-    //       console.log(weekday);
-    //     }
-    //   }
-    // }   
-  }
+  var selectedWeekday = document.getElementById("weekday").value;
 
 
+  var station= avgHourly[selectedStation];
+
+  var weekday = station[selectedWeekday];
 
       var data = new google.visualization.DataTable();
       data.addColumn('timeofday', 'Time of Day');
