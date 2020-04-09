@@ -66,15 +66,20 @@ function showAverageHourly() {
   var selectedWeekday = document.getElementById("weekday").value; 
 
   for (var i in avgHourly) {
-    if (i==selectedStation) {
+    if(i==selectedStation) {
       var station=i;
-      for (var j in station) {
-        if(j==selectedWeekday) {
-          var weekday=j;
-          console.log(weekday);
-        }
-      }
-    }   
+    }
+    console.log(i);
+    // if (i==selectedStation) {
+    //   var station=i;
+      
+    //   for (var j in station) {
+    //     if(j==selectedWeekday) {
+    //       var weekday=j;
+    //       console.log(weekday);
+    //     }
+    //   }
+    // }   
   }
 
 
@@ -103,9 +108,9 @@ function showAverageHourly() {
       ]);
 
       var options = {
-        title: 'Prediction of available bikes throughout the day',
+        title: 'Average available bikes throughout the day',
         hAxis: {
-          title: 'Time of Day',
+          title: '',
           format: 'h:mm a',
           viewWindow: {
             min: [5, 30, 0],
@@ -113,7 +118,7 @@ function showAverageHourly() {
           }
         },
         vAxis: {
-          title: 'Number of available bikes'
+          title: ''
         }
       };
 
@@ -177,12 +182,12 @@ function showAverageDaily() {
         ]);
 
       var options = {
-        title: 'Prediction of available bikes on Weekdays',
+        title: 'Average available bikes per Weekday',
         hAxis: {
-          title: 'Weekday'
+          title: ''
         },
         vAxis: {
-          title: 'Average number of available bikes'
+          title: ''
         }
       };
       
