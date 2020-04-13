@@ -192,7 +192,7 @@ a:hover, a:focus, a:active {
     padding: 10px;
 }
 
-/* Weekday Dropdown*/
+/*------------Weekday Dropdown----------------*/
 #weekday-dropdown {
     display:none;
 }
