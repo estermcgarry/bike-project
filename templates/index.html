@@ -23,9 +23,18 @@
           <img src="static/markers/orange.png" alt="orangemaker" style="width: 12px;"><span> &nbsp;Below 30%</span> 
         </div>
         <br>
+        <div id="weekdays" style="display: none">
+          <input type="radio" name="weekday" value="0" onclick="getWeekday()"> &nbsp; Moday &nbsp; &nbsp;
+          <input type="radio" name="weekday" value="1" onclick="getWeekday()"> &nbsp; Tuesday &nbsp; &nbsp;
+          <input type="radio" name="weekday" value="2" onclick="getWeekday()"> &nbsp; Wednesday &nbsp; &nbsp;
+          <input type="radio" name="weekday" value="3" onclick="getWeekday()"> &nbsp; Thursday &nbsp; &nbsp;
+          <input type="radio" name="weekday" value="4" onclick="getWeekday()"> &nbsp; Friday &nbsp; &nbsp;
+          <input type="radio" name="weekday" value="5" onclick="getWeekday()"> &nbsp; Saturday &nbsp; &nbsp;
+          <input type="radio" name="weekday" value="6" onclick="getWeekday()"> &nbsp; Sunday &nbsp; &nbsp;
+        </div>
 
-        <form id="weekday-dropdown">
-          <!-- Weekday Dropdown Menu -->
+        <!-- <form id="weekday-dropdown">
+           Weekday Dropdown Menu 
           <select id="weekday" required>
             <option value="">Select a Weekday</option>
             <option value="0">Monday</option>
@@ -37,12 +46,13 @@
             <option value="6">Sunday</option>
           </select>
           
-          <!-- Submit Button -->
-          <button type="button" onclick="showAverageHourly()">Submit</button>
-        </form>
+          Submit Button 
+          <button type="submit" onclick="showAverageHourly()">Submit</button>
+        </form> -->
         <div id="chart_hourly"></div>
       </div>
       <div id="chart_weekly"></div>
+      
       <div>
         <!-- Will display "Geolocation is not supported." if cannot get Users' Geolocation-->
         <p id="location"></p>

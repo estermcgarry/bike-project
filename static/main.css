@@ -192,10 +192,6 @@ a:hover, a:focus, a:active {
     padding: 10px;
 }
 
-/*------------Weekday Dropdown----------------*/
-#weekday-dropdown {
-    display:none;
-}
 
 /*------------Bikes Page----------------*/
 .tooltip {

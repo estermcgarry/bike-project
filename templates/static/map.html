@@ -181,65 +181,6 @@ xmlhttp2.send();
 // display chart on submit click
 google.charts.load('current', {packages: ['corechart', 'bar']});
 
-
-function showAverageHourly() {
-  var selectedStation = lastClickedMarker.bikeStation;
-  var selectedWeekday = document.getElementById("weekday").value;
-
-  var station= avgHourly[selectedStation];
-  var weekday = station[selectedWeekday];
-
-
-      var data = new google.visualization.DataTable();
-      data.addColumn('timeofday', 'Time of Day');
-      data.addColumn('number', 'Available Bikes');
-
-      data.addRows([
-        [{v: [6, 0, 0], f: '6 am'}, weekday["6"]],
-        [{v: [7, 0, 0], f: '7 am'}, weekday["7"]],
-        [{v: [8, 0, 0], f: '8 am'}, weekday["8"]],
-        [{v: [9, 0, 0], f: '9 am'}, weekday["9"]],
-        [{v: [10, 0, 0], f:'10 am'}, weekday["10"]],
-        [{v: [11, 0, 0], f: '11 am'}, weekday["11"]],
-        [{v: [12, 0, 0], f: '12 pm'}, weekday["12"]],
-        [{v: [13, 0, 0], f: '1 pm'}, weekday["13"]],
-        [{v: [14, 0, 0], f: '2 pm'}, weekday["14"]],
-        [{v: [15, 0, 0], f: '3 pm'}, weekday["15"]],
-        [{v: [16, 0, 0], f: '4 pm'}, weekday["16"]],
-        [{v: [17, 0, 0], f: '5 pm'}, weekday["17"]],
-        [{v: [18, 0, 0], f: '6 pm'}, weekday["18"]],
-        [{v: [19, 0, 0], f: '7 pm'}, weekday["19"]],
-        [{v: [20, 0, 0], f: '8 pm'}, weekday["20"]],
-        [{v: [21, 0, 0], f: '9 pm'}, weekday["21"]],
-      ]);
-
-      var options = {
-        title: 'Average available bikes throughout the day',
-        hAxis: {
-          title: '',
-          format: 'h:mm a',
-          viewWindow: {
-            min: [6, 30, 0],
-            max: [21, 30, 0]
-          }
-        },
-        vAxis: {
-          title: ''
-        },
-        legend: {
-          position: "none"
-        },
-        colors: ['#7ed957']
-
-      };
-
-      var chart = new google.visualization.ColumnChart(
-        document.getElementById('chart_hourly'));
-
-      chart.draw(data, options);
-}
-
-
 function showAverageDailyForStation(selectedStation) {
     //var selectedStation = document.getElementById("stations").value;
 
@@ -313,14 +254,81 @@ function showAverageDailyForStation(selectedStation) {
 
         chart.draw(data, options);
 
-        document.querySelector('#weekday-dropdown').style.display = 'flex';
+        document.querySelector('#weekdays').style.display = 'flex';
     }
 
 }
 
+function getWeekday() {
+    /* This function gets the value of the selected radio button */
+    var weekdayBtns = document.getElementsByName('weekday');
+    var weekdayVal = null;
+    
+    for (var i = 0; i < weekdayBtns.length; i++) {
+        if (weekdayBtns[i].checked) {
+            weekdayVal = weekdayBtns[i].value;
+            showAverageHourly(weekdayVal);
+        };
+    };
+  };
 
 
+  function showAverageHourly(dayOfWeek) {
+  var selectedStation = lastClickedMarker.bikeStation;
+  var selectedWeekday = dayOfWeek;
 
+  var station= avgHourly[selectedStation];
+  var weekday = station[selectedWeekday];
+
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('timeofday', 'Time of Day');
+      data.addColumn('number', 'Available Bikes');
+
+      data.addRows([
+        [{v: [6, 0, 0], f: '6 am'}, weekday["6"]],
+        [{v: [7, 0, 0], f: '7 am'}, weekday["7"]],
+        [{v: [8, 0, 0], f: '8 am'}, weekday["8"]],
+        [{v: [9, 0, 0], f: '9 am'}, weekday["9"]],
+        [{v: [10, 0, 0], f:'10 am'}, weekday["10"]],
+        [{v: [11, 0, 0], f: '11 am'}, weekday["11"]],
+        [{v: [12, 0, 0], f: '12 pm'}, weekday["12"]],
+        [{v: [13, 0, 0], f: '1 pm'}, weekday["13"]],
+        [{v: [14, 0, 0], f: '2 pm'}, weekday["14"]],
+        [{v: [15, 0, 0], f: '3 pm'}, weekday["15"]],
+        [{v: [16, 0, 0], f: '4 pm'}, weekday["16"]],
+        [{v: [17, 0, 0], f: '5 pm'}, weekday["17"]],
+        [{v: [18, 0, 0], f: '6 pm'}, weekday["18"]],
+        [{v: [19, 0, 0], f: '7 pm'}, weekday["19"]],
+        [{v: [20, 0, 0], f: '8 pm'}, weekday["20"]],
+        [{v: [21, 0, 0], f: '9 pm'}, weekday["21"]],
+      ]);
+
+      var options = {
+        title: 'Average available bikes throughout the day',
+        hAxis: {
+          title: '',
+          format: 'h:mm a',
+          viewWindow: {
+            min: [6, 30, 0],
+            max: [21, 30, 0]
+          }
+        },
+        vAxis: {
+          title: ''
+        },
+        legend: {
+          position: "none"
+        },
+        colors: ['#7ed957']
+
+      };
+
+      var chart = new google.visualization.ColumnChart(
+        document.getElementById('chart_hourly'));
+
+      chart.draw(data, options);
+}
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBR7esRJtzTOqcv53Bk3t1xpiCF0YPO-3I&callback=initMap"
         async defer></script>
