@@ -81,8 +81,8 @@ function showAverageHourly() {
       data.addColumn('number', 'Available Bikes');
 
       data.addRows([
-        [{v: [6, 0, 0], f: '6 pm'}, weekday["6"]],
-        [{v: [7, 0, 0], f: '7 pm'}, weekday["7"]],
+        [{v: [6, 0, 0], f: '6 am'}, weekday["6"]],
+        [{v: [7, 0, 0], f: '7 am'}, weekday["7"]],
         [{v: [8, 0, 0], f: '8 am'}, weekday["8"]],
         [{v: [9, 0, 0], f: '9 am'}, weekday["9"]],
         [{v: [10, 0, 0], f:'10 am'}, weekday["10"]],
@@ -105,13 +105,18 @@ function showAverageHourly() {
           title: '',
           format: 'h:mm a',
           viewWindow: {
-            min: [5, 30, 0],
+            min: [6, 30, 0],
             max: [21, 30, 0]
           }
         },
         vAxis: {
           title: ''
-        }
+        },
+        legend: {
+          position: "none"
+        },
+        colors: ['#7ed957']
+
       };
 
       var chart = new google.visualization.ColumnChart(
@@ -180,7 +185,11 @@ function showAverageDaily() {
         },
         vAxis: {
           title: ''
-        }
+        },
+        legend: {
+          position: "none"
+        },
+        colors: ['#7ed957']
       };
       
       if (selectedStation) {
