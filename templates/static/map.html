@@ -176,36 +176,6 @@ xmlhttp2.open("GET", url2, true);
 xmlhttp2.send();
 
 
-/*----------Dropdown Menu----------*/
-
-//Array containing the markers info
-var markers = {{ markers|safe }};
-console.log(markers);
-
-//Array containing the number and name of the stations
-var infoDropdown = {{ station_names|safe }};
-
-//Initializing the variable that will contain
-//the station options for the dropdown menu
-var infoDropdownList = '';
-
-//Setting default and firstvalue for the dropdown menu
-infoDropdownList += '<option value="">Select your station</option>';
-
-//Looping through the stations array (var infoDropdown)
-for (var i = 0; i < infoDropdown.length; i++) {
-
-    var stationNumber = infoDropdown[i].number;
-    var stationName = infoDropdown[i].name;
-
-    //Adding each option
-    infoDropdownList += '<option value="' + infoDropdown[i].number + '">' + infoDropdown[i].name + '</option>';
-}
-
-//Adding the dropdown list to the html
-document.getElementById("stations").innerHTML = infoDropdownList;
-
-
 /*----------Charts----------*/
 
 // display chart on submit click
