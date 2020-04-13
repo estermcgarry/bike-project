@@ -211,7 +211,7 @@ a:hover, a:focus, a:active {
     display:none;
 }
 
-/* Our Bikes Styles */
+/*------------Bikes Page----------------*/
 .tooltip {
     text-decoration:none;
     position:relative;
@@ -276,3 +276,7 @@ body {
     font-size: 35px;
     cursor: pointer;
 }
+
+
+
+/*------------Date Picker----------------*/
