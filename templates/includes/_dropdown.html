@@ -112,6 +112,17 @@ document.getElementById("stations").innerHTML = stationsDropdown;
 document.getElementById("days").innerHTML = daysDropdown;
 document.getElementById("months").innerHTML = monthsDropdown;
 
+function getModel() {
+  document.querySelector('#availableBikes').style.display = 'inline';
 
+  var selectedStation = document.getElementById("stations").value;
+  var selectedDay = document.getElementById("days").value;
+  var selectedMonth = document.getElementById("months").value;
+  
+  var date = new Date(2020, selectedMonth, selectedDay)
+  var weekday = date.getDay();
+  console.log(weekday);
+
+}
 
 </script>
