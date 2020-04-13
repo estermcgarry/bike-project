@@ -88,6 +88,9 @@ function createCallback(xhttp, stationNumber, marker) {
             });
             infoWindow.open(map, marker);
 
+            // show graph when click on station
+            showAverageDailyForStation(stationNumber);
+
             // Make the current info Window the last opened to be able to close it later when function is called again
             lastOpenedInfoWindow = infoWindow;
         }
@@ -139,6 +142,212 @@ function getDirections(){
         }
     });
 }
+
+
+
+/*----------Parsing Json Files----------*/
+
+// Parsing avg_weekday json file
+var xmlhttp = new XMLHttpRequest();
+var url = "static/avg_weekday.json";
+var avgWeekday = null;
+
+xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+      avgWeekday = JSON.parse(xmlhttp.responseText);
+    }
+};
+
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+// Parsing avg_hourly json file
+var xmlhttp2 = new XMLHttpRequest();
+var url2 = "static/avg_hourly.json";
+var avgHourly = null;
+
+xmlhttp2.onreadystatechange = function() {
+    if (xmlhttp2.readyState == 4 && xmlhttp2.status == 200) {
+      avgHourly = JSON.parse(xmlhttp2.responseText);
+    }
+};
+
+xmlhttp2.open("GET", url2, true);
+xmlhttp2.send();
+
+
+/*----------Dropdown Menu----------*/
+
+//Array containing the markers info
+var markers = {{ markers|safe }};
+console.log(markers);
+
+//Array containing the number and name of the stations
+var infoDropdown = {{ station_names|safe }};
+
+//Initializing the variable that will contain
+//the station options for the dropdown menu
+var infoDropdownList = '';
+
+//Setting default and firstvalue for the dropdown menu
+infoDropdownList += '<option value="">Select your station</option>';
+
+//Looping through the stations array (var infoDropdown)
+for (var i = 0; i < infoDropdown.length; i++) {
+
+    var stationNumber = infoDropdown[i].number;
+    var stationName = infoDropdown[i].name;
+
+    //Adding each option
+    infoDropdownList += '<option value="' + infoDropdown[i].number + '">' + infoDropdown[i].name + '</option>';
+}
+
+//Adding the dropdown list to the html
+document.getElementById("stations").innerHTML = infoDropdownList;
+
+
+/*----------Charts----------*/
+
+// display chart on submit click
+google.charts.load('current', {packages: ['corechart', 'bar']});
+
+
+function showAverageHourly() {
+  var selectedStation = lastClickedMarker.bikeStation;
+  var selectedWeekday = document.getElementById("weekday").value;
+
+  var station= avgHourly[selectedStation];
+  var weekday = station[selectedWeekday];
+
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('timeofday', 'Time of Day');
+      data.addColumn('number', 'Available Bikes');
+
+      data.addRows([
+        [{v: [6, 0, 0], f: '6 am'}, weekday["6"]],
+        [{v: [7, 0, 0], f: '7 am'}, weekday["7"]],
+        [{v: [8, 0, 0], f: '8 am'}, weekday["8"]],
+        [{v: [9, 0, 0], f: '9 am'}, weekday["9"]],
+        [{v: [10, 0, 0], f:'10 am'}, weekday["10"]],
+        [{v: [11, 0, 0], f: '11 am'}, weekday["11"]],
+        [{v: [12, 0, 0], f: '12 pm'}, weekday["12"]],
+        [{v: [13, 0, 0], f: '1 pm'}, weekday["13"]],
+        [{v: [14, 0, 0], f: '2 pm'}, weekday["14"]],
+        [{v: [15, 0, 0], f: '3 pm'}, weekday["15"]],
+        [{v: [16, 0, 0], f: '4 pm'}, weekday["16"]],
+        [{v: [17, 0, 0], f: '5 pm'}, weekday["17"]],
+        [{v: [18, 0, 0], f: '6 pm'}, weekday["18"]],
+        [{v: [19, 0, 0], f: '7 pm'}, weekday["19"]],
+        [{v: [20, 0, 0], f: '8 pm'}, weekday["20"]],
+        [{v: [21, 0, 0], f: '9 pm'}, weekday["21"]],
+      ]);
+
+      var options = {
+        title: 'Average available bikes throughout the day',
+        hAxis: {
+          title: '',
+          format: 'h:mm a',
+          viewWindow: {
+            min: [6, 30, 0],
+            max: [21, 30, 0]
+          }
+        },
+        vAxis: {
+          title: ''
+        },
+        legend: {
+          position: "none"
+        },
+        colors: ['#7ed957']
+
+      };
+
+      var chart = new google.visualization.ColumnChart(
+        document.getElementById('chart_hourly'));
+
+      chart.draw(data, options);
+}
+
+function showAverageDailyForStation(selectedStation) {
+    //var selectedStation = document.getElementById("stations").value;
+
+    // Finding the info about the station selected in the json file
+    // And assigning it to var station
+    for (var i in avgWeekday) {
+    if (i==selectedStation) {
+      var station=avgWeekday[i];
+    }
+    }
+
+    // Creating variables for the days of the week and assigning to them the avg availability of bikes
+    // Given the station the user selected
+    for (var j in station) {
+    switch(j) {
+      case 'monday':
+        var monday=station[j];
+        break;
+      case 'tuesday':
+        var tuesday=station[j];
+        break;
+      case 'wednesday':
+        var wednesday=station[j];
+        break;
+      case 'thursday':
+        var thursday=station[j];
+        break;
+      case 'friday':
+        var friday=station[j];
+        break;
+      case 'saturday':
+        var saturday=station[j];
+        break;
+      case 'sunday':
+        var sunday=station[j];
+        break;
+    }
+    }
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Weekday');
+    data.addColumn('number', 'Available Bikes');
+
+    data.addRows([
+        ['Monday', monday],
+        ['Tuesday', tuesday],
+        ['Wednesday', wednesday],
+        ['Thursday', thursday],
+        ['Friday', friday],
+        ['Saturday', saturday],
+        ['Sunday', sunday]
+    ]);
+
+    var options = {
+        title: 'Average available bikes per Weekday',
+        hAxis: {
+          title: ''
+        },
+        vAxis: {
+          title: ''
+        },
+        legend: {
+          position: "none"
+        },
+        colors: ['#7ed957']
+    };
+
+    if (selectedStation) {
+        var chart = new google.visualization.ColumnChart(
+        document.getElementById('chart_weekly'));
+
+        chart.draw(data, options);
+
+        document.querySelector('#weekday-dropdown').style.display = 'flex';
+    }
+
+}
+
+
 
 
 </script>
