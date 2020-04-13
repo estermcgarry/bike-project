@@ -16,17 +16,39 @@
         </div>
         <div id="map"></div>
         <br>
-        <p><b>Available bikes:</b></p>
-        <img src="static/markers/green.png" alt="greenmaker"><span> Above 60%</span>
-        <img src="static/markers/yellow.png" alt="yellowmaker"><span> Between 30% and 60%</span>
-        <img src="static/markers/orange.png" alt="orangemaker"><span> Below 30%</span>
+        <div style="font-size: 13px;">
+          <span><b>Available bikes: &nbsp; &nbsp;</b></span>
+          <img src="static/markers/green.png" alt="greenmaker" style="width: 12px;"><span> &nbsp; Above 60% &nbsp; &nbsp;</span>
+          <img src="static/markers/yellow.png" alt="yellowmaker" style="width: 12px;"><span> &nbsp; Between 30% and 60% &nbsp; &nbsp;</span>
+          <img src="static/markers/orange.png" alt="orangemaker" style="width: 12px;"><span> &nbsp;Below 30%</span> 
+        </div>
+        <br>
+
+        <form id="weekday-dropdown">
+          <!-- Weekday Dropdown Menu -->
+          <select id="weekday" required>
+            <option value="">Select a Weekday</option>
+            <option value="0">Monday</option>
+            <option value="1">Tuesday</option>
+            <option value="2">Wednesday</option>
+            <option value="3">Thursday</option>
+            <option value="4">Friday</option>
+            <option value="5">Saturday</option>
+            <option value="6">Sunday</option>
+          </select>
+          
+          <!-- Submit Button -->
+          <button type="button" onclick="showAverageHourly()">Submit</button>
+        </form>
+        <div id="chart_hourly"></div>
       </div>
+      <div id="chart_weekly"></div>
       <div>
         <!-- Will display "Geolocation is not supported." if cannot get Users' Geolocation-->
         <p id="location"></p>
 
       </div>
-
+      
     </section>
 
     <hr class="m-0">
@@ -46,30 +68,12 @@
                 </select>
                 
                 <!-- Submit Button -->
-                <button type="button" onclick="showAverageDaily()">Submit</button>
+                <button type="button" onclick="">Submit</button>
             
             </form>
 
         </div>
-        <div id="chart_weekly"></div>
-        <br>
-        <form id="weekday-dropdown">
-          <!-- Weekday Dropdown Menu -->
-          <select id="weekday" required>
-            <option value="">Select a Weekday</option>
-            <option value="0">Monday</option>
-            <option value="1">Tuesday</option>
-            <option value="2">Wednesday</option>
-            <option value="3">Thursday</option>
-            <option value="4">Friday</option>
-            <option value="5">Saturday</option>
-            <option value="6">Sunday</option>
-          </select>
-          
-          <!-- Submit Button -->
-          <button type="button" onclick="showAverageHourly()">Submit</button>
-        </form>
-        <div id="chart_hourly"></div>
+        
       </div>
   </section>
     
@@ -378,7 +382,7 @@
 
 {% include 'static/weather.html' %}
 {% include 'static/map.html' %}
-{% include 'includes/_graphs.html' %}
+{% include 'includes/_dropdown.html' %}
 {% include 'includes/_contactform.html' %}
 {% include 'includes/_bikespage.html' %}
 
