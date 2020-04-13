@@ -1,0 +1,117 @@
+
+<script>
+  
+/*----------Parsing Json Files----------*/
+
+// Parsing avg_weekday json file
+var xmlhttp = new XMLHttpRequest();
+var url = "static/avg_weekday.json";
+var avgWeekday = null;
+
+xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+      avgWeekday = JSON.parse(xmlhttp.responseText);
+    }
+};
+
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+// Parsing avg_hourly json file
+var xmlhttp2 = new XMLHttpRequest();
+var url2 = "static/avg_hourly.json";
+var avgHourly = null;
+
+xmlhttp2.onreadystatechange = function() {
+    if (xmlhttp2.readyState == 4 && xmlhttp2.status == 200) {
+      avgHourly = JSON.parse(xmlhttp2.responseText);
+    }
+};
+
+xmlhttp2.open("GET", url2, true);
+xmlhttp2.send();
+
+
+/*----------Dropdown Menu----------*/
+
+//Array containing the markers info
+var markers = {{ markers|safe }};
+console.log(markers);
+
+//Array containing the number and name of the stations
+var infoDropdown = {{ station_names|safe }};
+
+//Initializing the variables that will contain the dropdown options
+var stationsDropdown = '';
+var daysDropdown = '';
+var monthsDropdown = '';
+
+//Setting default and firstvalue for the dropdown menus
+stationsDropdown += '<option value="">Select your station</option>';
+daysDropdown += '<option value="">Day</option>';
+monthsDropdown += '<option value="">Month</option>';
+
+// Adding each station option to the stations' dropdown
+for (var i = 0; i < infoDropdown.length; i++) {
+  var stationNumber = infoDropdown[i].number;
+  var stationName = infoDropdown[i].name;
+  
+  stationsDropdown += '<option value="' + infoDropdown[i].number + '">' + infoDropdown[i].name + '</option>';
+}
+
+// Adding the options to the days dropdown 
+for (var i = 1; i < 32; i++) {
+  daysDropdown += '<option value="' + i + '">' + i + '</option>';
+}
+
+// Adding the options to the months dropdown
+for (var i = 0; i < 12; i++) {
+  switch(i) {
+    case 0:
+      monthsDropdown += '<option value="' + i + '">January</option>';
+      break;
+    case 1:
+      monthsDropdown += '<option value="' + i + '">February</option>';
+      break;
+    case 2:
+      monthsDropdown += '<option value="' + i + '">March</option>';
+      break;
+    case 3:
+      monthsDropdown += '<option value="' + i + '">April</option>';
+      break;
+    case 4:
+      monthsDropdown += '<option value="' + i + '">May</option>';
+      break;
+    case 5:
+      monthsDropdown += '<option value="' + i + '">June</option>';
+      break;
+    case 6:
+      monthsDropdown += '<option value="' + i + '">July</option>';
+      break;
+    case 7:
+      monthsDropdown += '<option value="' + i + '">August</option>';
+      break;
+    case 8:
+      monthsDropdown += '<option value="' + i + '">September</option>';
+      break;
+    case 9:
+      monthsDropdown += '<option value="' + i + '">October</option>';
+      break;
+    case 10:
+      monthsDropdown += '<option value="' + i + '">November</option>';
+      break;
+    case 11:
+      monthsDropdown += '<option value="' + i + '">December</option>';
+      break;
+  }
+
+}
+
+//Adding the dropdowns to the html
+document.getElementById("stations").innerHTML = stationsDropdown;
+document.getElementById("days").innerHTML = daysDropdown;
+document.getElementById("months").innerHTML = monthsDropdown;
+
+
+
+</script>
