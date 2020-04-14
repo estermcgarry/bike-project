@@ -106,7 +106,7 @@ def prediction(station, weekday):
     #
     # # Use the loaded model to make predictions
     # model_from_joblib.predict(X_test)
-    prediction = 12
+    prediction = 13
 
     message = "<b> We estimate " + prediction + "available bikes for that day. </b>"
     return message

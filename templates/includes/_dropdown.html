@@ -120,22 +120,28 @@ function getModel() {
   
   var date = new Date(2020, selectedMonth, selectedDay)
   var weekday = date.getDay();
-  console.log(weekday);
+  
   requestModelInfo(selectedStation, weekday);
 }
 
-
-
 // function gets called when user clicks on a marker, sends XMLHttp request
 function requestModelInfo(stationNumber, weekDay){
-    var xhttp = new XMLHttpRequest();
+    var xhttp2 = new XMLHttpRequest();
 
     // Calling the Callback function for a speciffic marker so as to change information on info Window for different markers
-    xhttp.onreadystatechange = createCallback(xhttp, stationNumber, marker);
+    xhttp2.onreadystatechange = callbackFunc(xhttp2);
 
     // @app.route('/station/<station>/<weekday>'), which returns the model message
-    xhttp.open("GET", "/station/" + stationNumber + "/" + weekDay, true);
-    xhttp.send();
+    xhttp2.open("GET", "/station/" + stationNumber + weekDay, true);
+    xhttp2.send();
+}
+
+function callbackFunc(xhttp2) {
+  if (this.readyState == 4 && this.status == 200) {
+    console.log(xhttp2.responseText);
+    document.getElementById("numAvailable").innerHTML = xhttp2.responseText;
+  }
+  
 }
 
 </script>
