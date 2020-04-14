@@ -112,5 +112,9 @@ def prediction(station, weekday):
     return message
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8000)
+    #http
+    #app.run(host="0.0.0.0", port=80)
+    #https
+    app.run(host="0.0.0.0", port=443)
+    #app.run(debug=True, port=8000)
 
