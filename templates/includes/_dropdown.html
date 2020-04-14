@@ -1,6 +1,5 @@
 
 <script>
-  
 /*----------Parsing Json Files----------*/
 
 // Parsing avg_weekday json file
@@ -122,7 +121,21 @@ function getModel() {
   var date = new Date(2020, selectedMonth, selectedDay)
   var weekday = date.getDay();
   console.log(weekday);
+  requestModelInfo(selectedStation, weekday);
+}
 
+
+
+// function gets called when user clicks on a marker, sends XMLHttp request
+function requestModelInfo(stationNumber, weekDay){
+    var xhttp = new XMLHttpRequest();
+
+    // Calling the Callback function for a speciffic marker so as to change information on info Window for different markers
+    xhttp.onreadystatechange = createCallback(xhttp, stationNumber, marker);
+
+    // @app.route('/station/<station>/<weekday>'), which returns the model message
+    xhttp.open("GET", "/station/" + stationNumber + "/" + weekDay, true);
+    xhttp.send();
 }
 
 </script>

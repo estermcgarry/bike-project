@@ -1,4 +1,8 @@
-from sklearn.externals import joblib 
+
+
+
+
+from sklearn.externals import joblib
   
 # Load the model from the file 
 model_from_joblib = joblib.load('model.pkl')  
