@@ -91,6 +91,11 @@ function createCallback(xhttp, stationNumber, marker) {
             // show graph when click on station
             showAverageDailyForStation(stationNumber);
 
+            //When another station is clicked update the hourly chart as well
+            if(lastOpenedInfoWindow) {
+                getWeekday();
+            }
+
             // Make the current info Window the last opened to be able to close it later when function is called again
             lastOpenedInfoWindow = infoWindow;
         }
