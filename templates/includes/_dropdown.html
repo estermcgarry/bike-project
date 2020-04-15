@@ -1,36 +1,5 @@
 
 <script>
-/*----------Parsing Json Files----------*/
-
-// Parsing avg_weekday json file
-var xmlhttp = new XMLHttpRequest();
-var url = "static/avg_weekday.json";
-var avgWeekday = null;
-
-xmlhttp.onreadystatechange = function() {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-      avgWeekday = JSON.parse(xmlhttp.responseText);
-    }
-};
-
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
-
-// Parsing avg_hourly json file
-var xmlhttp2 = new XMLHttpRequest();
-var url2 = "static/avg_hourly.json";
-var avgHourly = null;
-
-xmlhttp2.onreadystatechange = function() {
-    if (xmlhttp2.readyState == 4 && xmlhttp2.status == 200) {
-      avgHourly = JSON.parse(xmlhttp2.responseText);
-    }
-};
-
-xmlhttp2.open("GET", url2, true);
-xmlhttp2.send();
-
-
 /*----------Dropdown Menu----------*/
 
 //Array containing the markers info
@@ -45,7 +14,7 @@ var stationsDropdown = '';
 var daysDropdown = '';
 var monthsDropdown = '';
 
-//Setting default and firstvalue for the dropdown menus
+//Setting default and first value for the dropdown menus
 stationsDropdown += '<option value="">Select your station</option>';
 daysDropdown += '<option value="">Day</option>';
 monthsDropdown += '<option value="">Month</option>';
@@ -111,24 +80,31 @@ document.getElementById("stations").innerHTML = stationsDropdown;
 document.getElementById("days").innerHTML = daysDropdown;
 document.getElementById("months").innerHTML = monthsDropdown;
 
-function getModel() {
-  document.querySelector('#availableBikes').style.display = 'inline';
 
+function getModel() {
   var selectedStation = document.getElementById("stations").value;
   var selectedDay = document.getElementById("days").value;
   var selectedMonth = document.getElementById("months").value;
   
-  var date = new Date(2020, selectedMonth, selectedDay)
+  // Show an alert if the user does not select an option for each of the three dropdowns
+  if(selectedStation && selectedDay && selectedMonth) {
+    document.querySelector('#availableBikes').style.display = 'inline';
+  } else {
+    alert("Looks like you left something out. Please fill in all the parameters.")
+  }
+
+  // Creating a new date object with the day and month selected by the user
+  var date = new Date(2020, selectedMonth, selectedDay);
+  // Getting the day of the week for the date selected by the user
   var weekday = date.getDay();
   
   requestModelInfo(selectedStation, weekday);
 }
 
-// function gets called when user clicks on a marker, sends XMLHttp request
+
 function requestModelInfo(stationNumber, weekDay){
     var xhttp2 = new XMLHttpRequest();
 
-    // Calling the Callback function for a speciffic marker so as to change information on info Window for different markers
     xhttp2.onreadystatechange = callbackFunc(xhttp2);
 
     // @app.route('/station/<station>/<weekday>'), which returns the model message
