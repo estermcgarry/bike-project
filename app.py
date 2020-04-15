@@ -2,7 +2,6 @@ from flask_googlemaps import GoogleMaps
 import mysql.connector
 from flask import Flask, render_template
 import json
-from sklearn.externals import joblib
 
 app = Flask(__name__,  template_folder="./templates")
 
@@ -99,13 +98,7 @@ def home(station):
 
 @app.route('/station/<station>/<weekday>')
 def prediction(station, weekday):
-    # # Load the model from the file
-    # model_from_joblib = joblib.load('model.pkl')
-    #
-    # X_test=[[0,0,0,1,0,0,1,0]]
-    #
-    # # Use the loaded model to make predictions
-    # model_from_joblib.predict(X_test)
+ 
     prediction = 13
 
     message = "<b> We estimate " + prediction + "available bikes for that day. </b>"
@@ -113,11 +106,11 @@ def prediction(station, weekday):
 
 if __name__ == '__main__':
     #http
-    app.run(host="0.0.0.0", port=80)
+    #app.run(host="0.0.0.0", port=80)
     
     #https
     #app.run(host="0.0.0.0", port=443)
 
     #locally
-    #app.run(debug=True, port=8000)
+    app.run(debug=True, port=8000)
 
