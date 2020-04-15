@@ -105,21 +105,28 @@ function getModel() {
 
 
 function requestModelInfo(stationNumber, weekDay){
-    var xhttp2 = new XMLHttpRequest();
+    var xhttp = new XMLHttpRequest();
 
-    xhttp2.onreadystatechange = callbackFunc(xhttp2);
-
-    // @app.route('/station/<station>/<weekday>'), which returns the model message
-    xhttp2.open("GET", "/station/" + stationNumber + weekDay, true);
-    xhttp2.send();
+    xhttp.onreadystatechange = createRequestModelInfoCallback(xhttp);
+    xhttp.open("GET", "/station/" + stationNumber + "/" + weekDay, true);
+    xhttp.send();
 }
 
+/*
 function callbackFunc(xhttp2) {
   if (this.readyState == 4 && this.status == 200) {
     console.log(xhttp2.responseText);
-    document.getElementById("numAvailable").innerHTML = xhttp2.responseText;
+    var messageOutputElement = document.getElementById("numAvailable");
+    messageOutputElement.innerHTML = xhttp2.responseText;
   }
-  
+}*/
+
+function createRequestModelInfoCallback(xhttp) {
+    return  function() {
+        console.log(xhttp.responseText);
+        var messageOutputElement = document.getElementById("numAvailable");
+        messageOutputElement.innerHTML = xhttp.responseText;
+    };
 }
 
 </script>
