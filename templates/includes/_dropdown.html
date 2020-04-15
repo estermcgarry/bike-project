@@ -1,6 +1,6 @@
 
 <script>
-/*----------Dropdown Menu----------*/
+/*----------Dropdown Menus----------*/
 
 //Array containing the markers info
 var markers = {{ markers|safe }};
@@ -80,6 +80,8 @@ document.getElementById("stations").innerHTML = stationsDropdown;
 document.getElementById("days").innerHTML = daysDropdown;
 document.getElementById("months").innerHTML = monthsDropdown;
 
+
+/*----------Actions post user clicks submit----------*/
 
 function getModel() {
   var selectedStation = document.getElementById("stations").value;
