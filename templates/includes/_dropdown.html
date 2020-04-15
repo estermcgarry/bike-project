@@ -112,14 +112,6 @@ function requestModelInfo(stationNumber, weekDay){
     xhttp.send();
 }
 
-/*
-function callbackFunc(xhttp2) {
-  if (this.readyState == 4 && this.status == 200) {
-    console.log(xhttp2.responseText);
-    var messageOutputElement = document.getElementById("numAvailable");
-    messageOutputElement.innerHTML = xhttp2.responseText;
-  }
-}*/
 
 function createRequestModelInfoCallback(xhttp) {
     return  function() {
