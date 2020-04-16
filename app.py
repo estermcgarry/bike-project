@@ -104,6 +104,7 @@ def prediction(station, weekday):
     print("station " + station)
     print("weekday " + weekday)
 
+    
     if weekday == 0:
         weekday_list = [0,0,0,0,0,1]
     elif weekday == 1:
@@ -123,14 +124,14 @@ def prediction(station, weekday):
     area2=[2,4,5,6,8,11,12,13,19,21,22,23,24,27,30,32,33,36,39,40,41,42,44,49,50,52,55,56,57,59,61,63,68,71,72,73,76,79,83,84,85,86,87,88,89,90,92,93,94,96,98,99,101,103,104,105,107,111,112,113,115,117]
     area3=[15,25,26,34,38,43,62,66,67,77,78,81,100,106,114]
 
-    if station in area1:
+    if int(station) in area1:
         station_area = [0,0]
-    elif station in area2:
+    elif int(station) in area2:
         station_area = [1,0]
     else:
         station_area = [0,1]
 
-
+    print(station_area)
     X_test = weekday_list + station_area
     X_test = [X_test]
 
@@ -144,8 +145,9 @@ def prediction(station, weekday):
         for j in i:
             final_number = (int(round(j, 0)))
 
-
+    
     message = "<b> We estimate " + str(final_number) + " available bikes for that day. </b>"
+    print(message)
     return message
 
 if __name__ == '__main__':

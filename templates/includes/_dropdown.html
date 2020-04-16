@@ -90,24 +90,26 @@ function getModel() {
   
   // Show an alert if the user does not select an option for each of the three dropdowns
   if(selectedStation && selectedDay && selectedMonth) {
+    // Creating a new date object with the day and month selected by the user
+    var date = new Date(2020, selectedMonth, selectedDay);
+    // Getting the day of the week for the date selected by the user
+    var weekday = date.getDay();
+  
+    requestModelInfo(selectedStation, weekday);
+
     document.querySelector('#availableBikes').style.display = 'inline';
+    
   } else {
     alert("Looks like you left something out. Please fill in all the parameters.")
   }
 
-  // Creating a new date object with the day and month selected by the user
-  var date = new Date(2020, selectedMonth, selectedDay);
-  // Getting the day of the week for the date selected by the user
-  var weekday = date.getDay();
-  
-  requestModelInfo(selectedStation, weekday);
+ 
 }
 
 
 function requestModelInfo(stationNumber, weekDay){
     var xhttp = new XMLHttpRequest();
-    alert("station" + stationNumber)
-    alert("weekday" + weekDay)
+    
     xhttp.onreadystatechange = createRequestModelInfoCallback(xhttp);
     xhttp.open("GET", "/station/" + stationNumber + "/" + weekDay, true);
     xhttp.send();
