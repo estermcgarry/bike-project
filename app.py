@@ -140,8 +140,12 @@ def prediction(station, weekday):
     # Use the loaded model to make predictions
     prediction = loaded_model.predict(X_test)
 
+    for i in prediction:
+        for j in i:
+            final_number = (int(round(j, 0)))
 
-    message = "<b> We estimate " + str(prediction) + " available bikes for that day. </b>"
+
+    message = "<b> We estimate " + str(final_number) + " available bikes for that day. </b>"
     return message
 
 if __name__ == '__main__':

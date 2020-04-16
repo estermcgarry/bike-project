@@ -106,7 +106,8 @@ function getModel() {
 
 function requestModelInfo(stationNumber, weekDay){
     var xhttp = new XMLHttpRequest();
-
+    alert("station" + stationNumber)
+    alert("weekday" + weekDay)
     xhttp.onreadystatechange = createRequestModelInfoCallback(xhttp);
     xhttp.open("GET", "/station/" + stationNumber + "/" + weekDay, true);
     xhttp.send();
@@ -115,7 +116,6 @@ function requestModelInfo(stationNumber, weekDay){
 
 function createRequestModelInfoCallback(xhttp) {
     return  function() {
-        console.log(xhttp.responseText);
         var messageOutputElement = document.getElementById("numAvailable");
         messageOutputElement.innerHTML = xhttp.responseText;
     };
