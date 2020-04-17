@@ -23,7 +23,8 @@
           <img src="static/markers/orange.png" alt="orangemaker" style="width: 12px;"><span> &nbsp;Below 30%</span> 
         </div>
         <br>
-        <div id="weekdays" style="display: none">
+        <div id="chart_weekly"></div>
+        <div id="weekdays" style="display: none; justify-content: center;">
           <input type="radio" name="weekday" value="0" onclick="getWeekday()"> &nbsp; Moday &nbsp; &nbsp;
           <input type="radio" name="weekday" value="1" onclick="getWeekday()"> &nbsp; Tuesday &nbsp; &nbsp;
           <input type="radio" name="weekday" value="2" onclick="getWeekday()"> &nbsp; Wednesday &nbsp; &nbsp;
@@ -32,10 +33,10 @@
           <input type="radio" name="weekday" value="5" onclick="getWeekday()"> &nbsp; Saturday &nbsp; &nbsp;
           <input type="radio" name="weekday" value="6" onclick="getWeekday()"> &nbsp; Sunday &nbsp; &nbsp;
         </div>
-
+        
         <div id="chart_hourly"></div>
       </div>
-      <div id="chart_weekly"></div>
+      
       
       <div>
         <!-- Will display "Geolocation is not supported." if cannot get Users' Geolocation-->
@@ -212,6 +213,10 @@
             <area class="pointer" shape="circle" coords="508,96,23" data-toggle="tooltip" title="Anti Theft Lock">
           </div>
         </map>
+
+        <div class="resume-date text-md-right">
+          <span class="text-primary">Source: dublinbikes.ie</span>
+        </div>
        </div>
     </section>
 
@@ -238,6 +243,9 @@
           The stands are used to secure bikes by means of a locking system specifically designed for the service.
           When you return your bike, an audio signal of 2 beeps and green indicator light will confirm when you have successfully locked the bike into the stand. In the event of a problem, contact the Call Centre on 1850 777 070.</p>
           
+          <div class="resume-date text-md-right">
+            <span class="text-primary">Source: dublinbikes.ie</span>
+          </div>
           </div>
       </section>
 
@@ -296,7 +304,9 @@
             <li>You can also associate a Leap Card with the system, which can then be used instead of your Dublin Bikes annual card.</li>
           </ul>
           </div>
-  
+          <div class="resume-date text-md-right">
+            <span class="text-primary">Source: dublinbikes.ie</span>
+          </div>
   
           </div>
       </section>
