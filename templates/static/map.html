@@ -137,8 +137,10 @@ function getLocationCallback(position) {
 
 function getLocationTestServerHardcoded() {
     userMarker = new google.maps.Marker({
+        // use position commented bellow when HTTPS is working
         //position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
-        position: new google.maps.LatLng(53.305916, -6.218373), // hardcoded ucd coords (see comment on https geolocation above)
+        // hardcoded ucd coords (see comment on https geolocation above)
+        position: new google.maps.LatLng(53.305916, -6.218373), 
         map: map,
         title: 'user position',
         icon: 'static/markers/blue.png'
