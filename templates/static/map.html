@@ -62,7 +62,12 @@ function initMap() {
         });
     };
     // get users current location using function
-    getLocation();
+    // the function below to get user location requires a secure connection (HTTPS) if not running locally
+    // future plan is to deploy this application with HTTPS, in the meantime, to simulate behaviour
+    // we are hardcoding the location
+    // getLocation();
+
+    getLocationTestServerHardcoded()
 };
 
 // function gets called when user clicks on a marker, sends XMLHttp request
@@ -124,6 +129,16 @@ function getLocation() {
 function getLocationCallback(position) {
     userMarker = new google.maps.Marker({
         position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+        map: map,
+        title: 'user position',
+        icon: 'static/markers/blue.png'
+    });
+}
+
+function getLocationTestServerHardcoded() {
+    userMarker = new google.maps.Marker({
+        //position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+        position: new google.maps.LatLng(53.305916, -6.218373), // hardcoded ucd coords (see comment on https geolocation above)
         map: map,
         title: 'user position',
         icon: 'static/markers/blue.png'
