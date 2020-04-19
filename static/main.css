@@ -1,3 +1,4 @@
+/* Adds scroll effect when a navbar link is clicked */
 html {
     scroll-behavior: smooth;
 }
@@ -12,6 +13,7 @@ html {
 
 
 /*!
+Source code for the layout: https://startbootstrap.com/themes/resume/
 * Start Bootstrap - Resume v5.0.8 (https://startbootstrap.com/template-overviews/resume)
 * Copyright 2013-2019 Start Bootstrap
 * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-resume/blob/master/LICENSE)
@@ -193,7 +195,7 @@ a:hover, a:focus, a:active {
 }
 
 
-/*------------Bikes Page----------------*/
+/*--------------Bikes Page----------------*/
 .pointer {
     cursor: pointer;
 }
@@ -208,7 +210,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* The grid: Three equal columns that floats next to each other */
+/* The grid: three equal columns that floats next to each other */
 .column {
     float: left;
     width: 33.33%;
