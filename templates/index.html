@@ -14,8 +14,10 @@
         <div class="subheading mb-5">1850 777 070 ·
           <a href="mailto:contactus@dublinbikes.ie">contactus@dublinbikes.ie</a>
         </div>
+        <!----Map---->
         <div id="map"></div>
         <br>
+        <!----Map legend---->
         <div style="font-size: 13px;">
           <span><b>Available bikes: &nbsp; &nbsp;</b></span>
           <img src="static/markers/green.png" alt="greenmaker" style="width: 12px;"><span> &nbsp; Above 60% &nbsp; &nbsp;</span>
@@ -23,7 +25,9 @@
           <img src="static/markers/orange.png" alt="orangemaker" style="width: 12px;"><span> &nbsp;Below 30%</span> 
         </div>
         <br>
+        <!----Weekly Chart---->
         <div id="chart_weekly"></div>
+        <!----Radio buttons---->
         <div id="weekdays" style="display: none; justify-content: center;">
           <input type="radio" name="weekday" value="0" onclick="getWeekday()"> &nbsp; Moday &nbsp; &nbsp;
           <input type="radio" name="weekday" value="1" onclick="getWeekday()"> &nbsp; Tuesday &nbsp; &nbsp;
@@ -33,21 +37,19 @@
           <input type="radio" name="weekday" value="5" onclick="getWeekday()"> &nbsp; Saturday &nbsp; &nbsp;
           <input type="radio" name="weekday" value="6" onclick="getWeekday()"> &nbsp; Sunday &nbsp; &nbsp;
         </div>
-        
+        <!----Hourly Chart---->
         <div id="chart_hourly"></div>
       </div>
-      
       
       <div>
         <!-- Will display "Geolocation is not supported." if cannot get Users' Geolocation-->
         <p id="location"></p>
-
       </div>
-      
     </section>
 
     <hr class="m-0">
 
+    <!---- Plan Your Trip Section ---->
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="plan-trip">
       <div class="w-100">
         <h2 class="mb-5">Plan Your Trip</h2>
@@ -56,7 +58,7 @@
           
             <form>
     
-                <!-- Station Dropdown Menu -->
+                <!---- Dropdown Menus ---->
                 <select id="stations" required>
                 </select>
                 <select id="days" required>
@@ -64,26 +66,25 @@
                 <select id="months" required>
                 </select>
                 
-                <!-- Submit Button -->
+                <!---- Submit Button ---->
                 <button type="button" onclick="getModel()">Submit</button>
             
             </form>
             <br>
             
         </div>
+        <!---- Will display the result of the ML model ---->
         <div id="availableBikes" style="font-size: 15px; display:none;">
-          
           <img src="static/images/bike.svg" alt= "bike" style="width:50px;"> &nbsp; &nbsp;
           <span id="numAvailable"></span>
         </div>
       </div>
-      
-  </section>
-    
+
+    </section>
 
     <hr class="m-0">
 
-
+    <!---- Weather Forecast Section ---->
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="weather">
       <div class="w-100">
         <h2 class="mb-5">Weather Forecast</h2>
@@ -104,9 +105,9 @@
       </div>
     </section>
 
-    
     <hr class="m-0">
 
+    <!---- About Section ---->
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
       <div class="w-100">
         <h2 class="mb-5">About</h2>
@@ -114,29 +115,29 @@
         <img class="img-fluid mx-auto mb-2" src="static/images/test1.jpg" alt="Logo">  
         <p>Dublin Bikes is a self-service bike rental system that operates alongside existing public transport options in Dublin. It represents an alternative to commuting between home and work. It also enables you to get out and about to enjoy Dublin city at your leisure. Using Dublin Bikes you can avoid the heavy traffic and contribute to a greener planet.</p>
         
-          <ul class="fa-ul mb-0">
-            <li>
-              <i class="fa-li fa fa-trophy text-warning"></i>
-              Dublin Bikes is open to everyone above 14 years of age</li>
-            <li>
-              <i class="fa-li fa fa-trophy text-warning"></i>
-              The first 30 minutes of use are free on every bike</li>
-            <li>
-              <i class="fa-li fa fa-trophy text-warning"></i>
-              Stations opening hours: 05:00 am - 00:30 am</li>
-            <li>
-              <i class="fa-li fa fa-trophy text-warning"></i>
-              Return a bike: 24 hours</li>
-           
-          </ul>
-          <div class="resume-date text-md-right">
-            <span class="text-primary">Source: dublinbikes.ie</span>
-          </div>
+        <ul class="fa-ul mb-0">
+          <li>
+            <i class="fa-li fa fa-trophy text-warning"></i>
+            Dublin Bikes is open to everyone above 14 years of age</li>
+          <li>
+            <i class="fa-li fa fa-trophy text-warning"></i>
+            The first 30 minutes of use are free on every bike</li>
+          <li>
+            <i class="fa-li fa fa-trophy text-warning"></i>
+            Stations opening hours: 05:00 am - 00:30 am</li>
+          <li>
+            <i class="fa-li fa fa-trophy text-warning"></i>
+            Return a bike: 24 hours</li>
+        </ul>
+        <div class="resume-date text-md-right">
+          <span class="text-primary">Source: dublinbikes.ie</span>
+        </div>
       </div>
     </section>
 
     <hr class="m-0">
 
+    <!---- Bikes Section ---->
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="bikes">
       <div class="w-100">
         <h2 class="mb-5">Bikes</h2>
@@ -147,7 +148,7 @@
 
 
         <map name="workmap">
-          <!--Each green spot in the image refers to a area tag bellow-->
+          <!--Each green spot in the image refers to an area tag bellow-->
 
           <div class="container">
             <area class="pointer"  shape="circle" coords="391,27,20" data-toggle="tooltip" data-placement="top" title="Simple and quick three gear change">
@@ -213,11 +214,12 @@
         <div class="resume-date text-md-right">
           <span class="text-primary">Source: dublinbikes.ie</span>
         </div>
-       </div>
+      </div>
     </section>
 
     <hr class="m-0">
 
+      <!---- Stations Section ---->
       <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="bikestations">
         <div class="w-100">
           <h2 class="mb-5">Stations</h2>
@@ -242,11 +244,12 @@
           <div class="resume-date text-md-right">
             <span class="text-primary">Source: dublinbikes.ie</span>
           </div>
-          </div>
+        </div>
       </section>
 
       <hr class="m-0">
 
+      <!---- Subscription Section ---->
       <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="subscription">
         <div class="w-100">
           <h2 class="mb-5">Subscription</h2>
@@ -304,11 +307,12 @@
             <span class="text-primary">Source: dublinbikes.ie</span>
           </div>
   
-          </div>
+        </div>
       </section>
 
     <hr class="m-0">
 
+    <!---- Contact Section ---->
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="contact">
       <div class="w-100">
         <h2 class="mb-5">Contact</h2>
