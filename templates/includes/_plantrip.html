@@ -103,10 +103,9 @@ function getModel() {
     alert("Looks like you left something out. Please fill in all the parameters.")
   }
 
- 
 }
 
-
+// Creating a XML Http Request
 function requestModelInfo(stationNumber, weekDay){
     var xhttp = new XMLHttpRequest();
     
@@ -118,6 +117,7 @@ function requestModelInfo(stationNumber, weekDay){
 
 function createRequestModelInfoCallback(xhttp) {
     return  function() {
+        // Adding the message to the html
         var messageOutputElement = document.getElementById("numAvailable");
         messageOutputElement.innerHTML = xhttp.responseText;
     };
