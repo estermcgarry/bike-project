@@ -18,10 +18,10 @@ GoogleMaps(app)
 def index():
     # Connecting to DB
     mydb = mysql.connector.connect(
-        host="bailebikesdb.ck068lrxfgr6.us-east-1.rds.amazonaws.com",
-        user="admin",
-        passwd="picanha123",
-        database='BikeData'
+    host="aws_host_link",
+    user="admin",
+    passwd="meu_password",
+    database='database'
     )
 
     mycursor = mydb.cursor()
@@ -81,10 +81,10 @@ def index():
 @app.route('/station/<station>')
 def home(station):
     mydb = mysql.connector.connect(
-        host="bailebikesdb.ck068lrxfgr6.us-east-1.rds.amazonaws.com",
-        user="admin",
-        passwd="picanha123",
-        database='BikeData'
+    host="aws_host_link",
+    user="admin",
+    passwd="meu_password",
+    database='database'
     )
     mycursor = mydb.cursor()
 
