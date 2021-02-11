@@ -11,10 +11,10 @@ print(json_dataset)
 test = json.loads(json_dataset)
 
 mydb = mysql.connector.connect(
-    host="bailebikesdb.ck068lrxfgr6.us-east-1.rds.amazonaws.com",
+    host="aws_host_link",
     user="admin",
-    passwd="picanha123",
-    database='BikeData'
+    passwd="meu_password",
+    database='database'
 )
 
 mycursor = mydb.cursor()
