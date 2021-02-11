@@ -3,7 +3,7 @@ import requests
 import json
 from datetime import datetime
 
-url='https://api.jcdecaux.com/vls/v1/stations?contract=Dublin&apiKey=28c31a8964f03149402ab48b7cd02cc9079481f7'
+url='https://api.jcdecaux.com/vls/v1/stations?contract=Dublin&apiKey=API'
 
 json_dataset = requests.get(url).text
 
