@@ -3,16 +3,16 @@ import json
 from datetime import datetime
 import mysql.connector
 
-url='https://api.darksky.net/forecast/313018b2afc91b7825d89c2740c19873/53.3498,-6.0'
+url='https://api.darksky.net/forecast/API'
 
 json_dataset = requests.get(url).text
 test = json.loads(json_dataset)
 print(json_dataset)
 mydb = mysql.connector.connect(
-    host="bailebikesdb.ck068lrxfgr6.us-east-1.rds.amazonaws.com",
+    host="aws_host_link",
     user="admin",
-    passwd="picanha123",
-    database='BikeData'
+    passwd="meu_password",
+    database='database'
 )
 
 mycursor = mydb.cursor()
