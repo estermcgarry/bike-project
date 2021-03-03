@@ -8,8 +8,8 @@ from sklearn.externals import joblib
 
 app = Flask(__name__,  template_folder="./templates")
 
-app.config['GOOGLEMAPS_KEY'] = "AIzaSyBR7esRJtzTOqcv53Bk3t1xpiCF0YPO-3I"
-app.config['WEATHER_KEY'] = "https://api.darksky.net/forecast/313018b2afc91b7825d89c2740c19873/53.3498,-6.0"
+app.config['GOOGLEMAPS_KEY'] = "api_key"
+app.config['WEATHER_KEY'] = "api_key"
 
 # Initialize the extension
 GoogleMaps(app)
@@ -18,10 +18,10 @@ GoogleMaps(app)
 def index():
     # Connecting to DB
     mydb = mysql.connector.connect(
-        host="bailebikesdb.ck068lrxfgr6.us-east-1.rds.amazonaws.com",
-        user="admin",
-        passwd="picanha123",
-        database='BikeData'
+    host="aws_host_link",
+    user="admin",
+    passwd="meu_password",
+    database='database'
     )
 
     mycursor = mydb.cursor()
@@ -81,10 +81,10 @@ def index():
 @app.route('/station/<station>')
 def home(station):
     mydb = mysql.connector.connect(
-        host="bailebikesdb.ck068lrxfgr6.us-east-1.rds.amazonaws.com",
-        user="admin",
-        passwd="picanha123",
-        database='BikeData'
+    host="aws_host_link",
+    user="admin",
+    passwd="meu_password",
+    database='database'
     )
     mycursor = mydb.cursor()
 
